@@ -4,14 +4,18 @@ import mainStructures.dataFramework.dataDetails.KeyForeign;
 import mainStructures.textExecutable.ExecutionTree;
 import mainStructures.toolsModule.pairVisitor.TreeVisitor;
 
-public class CommandJointJOIN extends CommandArchetype {
+public class CommandJointJOIN extends CommandArchetype implements ExecutionTree {
     private KeyForeign choiceON;
-    
-    
-    public CommandJointJOIN(ExecutionTree left, ExecutionTree right) {
-    	super(left, right);
-		
-	}
+    private String condition;
+
+    public CommandJointJOIN() {
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+
     @Override
     public ExecutionTree getLeft() {
         return null;

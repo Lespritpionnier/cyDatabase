@@ -9,8 +9,11 @@ import mainStructures.textExecutable.commands.CommandArchetype;
 import mainStructures.textExecutable.commands.CommandJointJOIN;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/Lespritpionnier/cyDatabase.git
 public class TreeBuilder {
     private ExecutionTree root;
     private ArrayList<ExecutionTree> stocking= new ArrayList<ExecutionTree>();
@@ -55,8 +58,6 @@ public class TreeBuilder {
     
    /* public ExecutionTree buildTree() {
 		Stack<ExecutionTree> stack = new Stack<ExecutionTree>();
-
-		
 		String constantValue = "";
 		
 		for (int index = 0; index < stocking.size(); index++) {

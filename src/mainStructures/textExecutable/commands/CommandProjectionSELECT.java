@@ -10,7 +10,12 @@ import java.util.ArrayList;
 public class CommandProjectionSELECT extends CommandArchetype {
     private String orderBY; //Name of the column.
     private boolean ifDISTINCT = false;
-    private ArrayList<String> dataWanted = new ArrayList<String>();
+    private ArrayList<String> dataWanted = new ArrayList<>();
+
+    public CommandProjectionSELECT(ArrayList<String> dataWanted) {
+        super();
+        this.dataWanted = dataWanted;
+    }
 
     /**
      * Those METHODS below are made before, maybe WRONG or MOUCHE
@@ -19,9 +24,6 @@ public class CommandProjectionSELECT extends CommandArchetype {
      * @param ifDISTINCT
      */
 
-    public CommandProjectionSELECT(ExecutionTree left, ExecutionTree right) {
-    	super(left, right);
-    }
     public void setDistinct(boolean ifDISTINCT) {
         this.ifDISTINCT = ifDISTINCT;
     }

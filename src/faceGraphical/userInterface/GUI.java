@@ -15,19 +15,20 @@ import mainStructures.textExecutable.commands.CommandSelectionWHERE;
 
 
 public class GUI extends JFrame {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private TreePanel treePanel;
 
+<<<<<<< HEAD
 	/**
 	 * To create a graphical tree frame, we need to specify the input tree text file.
 	 * 
 	 * @param input the name of input file with its path
 	 */
 	public GUI(ArrayList<ExecutionTree> input) {
+=======
+	public GUI(ArrayList<String> input) {
+>>>>>>> branch 'master' of https://github.com/Lespritpionnier/cyDatabase.git
 		super("Graphical Tree Demo");
 
 		TreeBuilder builder = new TreeBuilder();
