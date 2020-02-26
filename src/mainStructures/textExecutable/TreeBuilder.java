@@ -3,39 +3,35 @@ package mainStructures.textExecutable;
 import java.util.ArrayList;
 import java.util.Stack;
 
+
 import faceGraphical.showTree.elements.NodeGraphical;
 import mainStructures.textExecutable.commands.CommandArchetype;
 import mainStructures.textExecutable.commands.CommandJointJOIN;
 
 
 
+
 public class TreeBuilder {
     private ExecutionTree root;
-    private ArrayList<String> stocking= new ArrayList<String>();
+    private ArrayList<ExecutionTree> stocking= new ArrayList<ExecutionTree>();
     
     
     public TreeBuilder() {
     	
     }
     
-    public void addAll(ArrayList<String> list) {
+    public void addAll(ArrayList<ExecutionTree> list) {
     	stocking.addAll(list);
     }
     
    
     
     public void add(ExecutionTree node) {
-    	TreeBuilder tree= new TreeBuilder();
-    	String AddingNode;
-    	Class<? extends Object> test;
-    	test=tree.makeTree(node);
-    	AddingNode=tree.getName(test.getName());
-    	
-    	stocking.add(AddingNode);
+    			stocking.add(node);
     }
     
   
-    public ArrayList<String> getStocking(){
+    public ArrayList<ExecutionTree> getStocking(){
     	return stocking;
     }
 
@@ -43,7 +39,12 @@ public class TreeBuilder {
 		return ((Object) node).getClass();   
     } 
     
-    public String getName(String name) {
+    public String getName(ExecutionTree node) {
+    	TreeBuilder tree= new TreeBuilder();
+    	String name;
+    	Class<? extends Object> test;
+    	test=tree.makeTree(node);
+    	name=test.getName();    	
     	int pos = name.lastIndexOf(".");
     	if (pos > -1) {
     		return name.substring(pos+1);
@@ -52,33 +53,33 @@ public class TreeBuilder {
     	}
     }
     
-    public ExecutionTree buildTree() {
+   /* public ExecutionTree buildTree() {
 		Stack<ExecutionTree> stack = new Stack<ExecutionTree>();
 
 		
 		String constantValue = "";
-		String variableName = "";
-
+		
 		for (int index = 0; index < stocking.size(); index++) {
 			// The current char in the formula to process
-			String currentChar = stocking.get(index).substring(index, index + 1);
+			String currentChar = this.getName(stocking.get(index));
 
 			if (!isCommands(currentChar)) {
 				// Verify if it is the end of the formula or the end of the
 				// constant chain / variable chain.
-				boolean end = ((index + 1) == stocking.size())
-						|| (isCommands(stocking.get(index).substring(index + 1, index + 2)));
+				boolean end = ((index + 1) == stocking.size());
+						//|| (isCommands(this.getName(stocking.get(index))));
 
 				ExecutionTree operand = null;
 				if (isTable(currentChar)) {
 					constantValue += currentChar;
+					System.out.println(constantValue);
 					if (end) {
 						// All numbers are gathered, create the constant
 						operand = NodeGraphical.createConstant(constantValue);
 						constantValue = "";
 					}
-				} 
-				if (end) {
+					 } 
+				 if (end) {
 					if (stack.isEmpty()) {
 						// This is the case at beginning.
 						stack.push(operand);
@@ -90,17 +91,12 @@ public class TreeBuilder {
 							stack.push(operand);
 						}
 					}
+				} 
 				}
-			} else {
+				
+				else {
 				// We need two different treatments for * and +/-
-				if (currentChar.equals("CommandJointJOIN")) {
-					// Create the * with the existing left operand.
-					// The right operand will be null for the moment.
-					ExecutionTree pop = stack.pop();
-					CommandArchetype operation = NodeGraphical.createOperation(
-							currentChar, pop, null);
-					stack.push(operation);
-				} else {
+				 if(currentChar.equals("CommandJointJOIN")) {
 					// Process operations addition(+) or subtraction(-).
 					if (stack.size() == 2) {
 						ExecutionTree rightOperand = stack.pop();
@@ -116,6 +112,15 @@ public class TreeBuilder {
 						stack.push(operation);
 					}
 				}
+				
+				else {
+					// Create the * with the existing left operand.
+					// The right operand will be null for the moment.
+					ExecutionTree pop = stack.pop();
+					CommandArchetype operation = NodeGraphical.createOperation(
+							currentChar, pop, null);
+					stack.push(operation);
+				}
 			}
 		}
 
@@ -128,7 +133,49 @@ public class TreeBuilder {
 
 		// Return the root of the tree (the root IS the tree).
 		return stack.pop();
-	}
+	}*/
+    
+    public ExecutionTree buildTree() {
+    	Stack<ExecutionTree> stack = new Stack<ExecutionTree>();
+    	Stack<String> car = new Stack<String>();
+		
+    	for (int index = 0; index < stocking.size(); index++) {
+    	
+    		String currentChar = this.getName(stocking.get(index));
+    		ExecutionTree operand = null;
+    		
+    		if(isCommandProj(currentChar)) {
+    			
+    		}
+    		
+
+    		if(isCommandSelection(currentChar)) {
+    			
+    		}
+    		
+
+    		if(isCommandJoin(currentChar)) {
+    			
+    		}
+    		
+    		if(isTable(currentChar)) {
+    			operand =NodeGraphical.createConstant(currentChar);
+    			
+    		}
+    	}
+    	
+    	
+    	
+    	
+    	
+    	return root;
+    	
+    	
+    	
+
+    }
+    
+    
     
     
     
@@ -139,6 +186,22 @@ public class TreeBuilder {
 				|| value.equals("CommandProjectionSELECT") || value.equals("CommandRemovingDELETE") || value.equals("CommandSelectionWHERE"); 
 				
 	}
+	
+	private boolean isCommandJoin(String value) {
+		return  value.equals("CommandJointJOIN"); 
+				
+	}
+	
+	private boolean isCommandProj(String value) {
+		return  value.equals("CommandProjectionSELECT"); 
+				
+	}
+	
+	private boolean isCommandSelection(String value) {
+		return  value.equals("CommandJointJOIN"); 
+				
+	}
+	
 
 	private boolean isTable(String value) {
 		return !isCommands(value);

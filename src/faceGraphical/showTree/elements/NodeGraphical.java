@@ -1,10 +1,9 @@
 package faceGraphical.showTree.elements;
 
-import javax.swing.JFrame;
 
 import mainStructures.dataFramework.Table_database;
 import mainStructures.textExecutable.ExecutionTree;
-import mainStructures.textExecutable.TreeBuilder;
+
 import mainStructures.textExecutable.commands.CommandArchetype;
 import mainStructures.textExecutable.commands.CommandJointJOIN;
 import mainStructures.textExecutable.commands.CommandProjectionSELECT;
@@ -12,13 +11,13 @@ import mainStructures.textExecutable.commands.CommandSelectionWHERE;
 
 
 
-public class NodeGraphical extends JFrame {
+public class NodeGraphical{
 
 	private static final String JOIN_SYMBOL="JOIN";
 	private static final String SELECT_SYMBOL= "Projection";
 	private static final String WHERE_SYMBOL = "Selection";
-	private static final String CREATE_SYMBOL = "Création";
-	private static final String DELETE_SYMBOL = "Suppression";
+	//private static final String CREATE_SYMBOL = "Création";
+	//private static final String DELETE_SYMBOL = "Suppression";
 
 
 	

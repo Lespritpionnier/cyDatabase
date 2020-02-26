@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import faceGraphical.showTree.elements.TreePanel;
-
+import mainStructures.dataFramework.Table_database;
 import mainStructures.textExecutable.ExecutionTree;
 import mainStructures.textExecutable.TreeBuilder;
+import mainStructures.textExecutable.commands.CommandJointJOIN;
+import mainStructures.textExecutable.commands.CommandProjectionSELECT;
+import mainStructures.textExecutable.commands.CommandSelectionWHERE;
 
 
 
@@ -24,7 +27,7 @@ public class GUI extends JFrame {
 	 * 
 	 * @param input the name of input file with its path
 	 */
-	public GUI(ArrayList<String> input) {
+	public GUI(ArrayList<ExecutionTree> input) {
 		super("Graphical Tree Demo");
 
 		TreeBuilder builder = new TreeBuilder();
@@ -47,11 +50,12 @@ public class GUI extends JFrame {
 
 
 	public static void main(String[] args) {
-		ArrayList<String> list= new ArrayList<String> ();
-		list.add("CommandJointJOIN");
-		list.add("CommandProjectionSELECT");
-		list.add("CommandSelectionWHERE");
-		list.add("Table_datebase");
+		ArrayList<ExecutionTree> list= new ArrayList<ExecutionTree> ();
+		list.add(new Table_database("tab1"));
+		list.add(new CommandJointJOIN(null, null));
+		list.add(new CommandProjectionSELECT(null, null));
+		list.add(new CommandSelectionWHERE(null, null));
+		
 		new GUI(list);
 	}
 }

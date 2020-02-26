@@ -1,6 +1,4 @@
-package mainStructures.dataFramework;
-
-import mainStructures.dataFramework.dataDetails.KeyPrimary;
+package mainStructures.dataFramework; 
 import mainStructures.textExecutable.ExecutionTree;
 import mainStructures.toolsModule.pairVisitor.TreeVisitor;
 

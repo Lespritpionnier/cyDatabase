@@ -1,29 +1,37 @@
 package mainStructures.dataFramework.dataDetails;
 
 import mainStructures.dataFramework.Item_row;
-import mainStructures.dataFramework.exceptions.WrongDataTypeException;
 
 public class DataBit extends Item_row {
-    private boolean data;
+	private boolean data;
 
-    @Override
-    public boolean checkTypeCorrect(DataArchetype item){
-        //TODO
-    }
+	public DataBit(String name, String constraint) {
+		super(name, constraint);
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
-    public void setData(DataArchetype item){
-        try(checkTypeCorrect()){
-            //TODO
-        }catch (WrongDataTypeException){
-            //TODO
-        }
-    }
+	public DataBit(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
-    public boolean equals(DataArchetype item) {
-        //TODO
-    }
+	
 
+	@Override
+	public boolean checkTypeCorrect(DataArchetype item) throws WrongDataTypeException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
+	@Override
+	public void setData(DataArchetype item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean equals(DataArchetype item) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
