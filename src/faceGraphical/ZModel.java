@@ -1,4 +1,4 @@
-package faceGraphical.userInterface;
+package faceGraphical;
 
 import java.awt.Component;
 

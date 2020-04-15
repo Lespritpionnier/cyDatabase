@@ -3,17 +3,15 @@ package mainStructures.dataFramework;
 import java.util.ArrayList;
 
 public abstract class TableArchetype extends ArrayList<RowTable> {
-    protected String[] title;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String[] title;
     protected String tableName;
+    protected String primaryKey; 
 
 
-    public String[] getTitle() {
-        return title;
-    }
-    public void setTitle(String[] title) {
-//System.out.println(title[2]);
-        this.title = title;
-    }
 
     public String[][] toJTable (){
         String[][] jTable= new String[this.size()][title.length];
@@ -27,6 +25,15 @@ public abstract class TableArchetype extends ArrayList<RowTable> {
         return jTable;
     }
 
+    public String[] getTitle() {
+    	return title;
+    }
+    public void setTitle(String[] title) {
+//System.out.println(title[2]);
+    	this.title = title;
+    }
+    
+    public String getKeyName() { return primaryKey; }
     public void setName(String tableName) { this.tableName=tableName; }
     public String getName() { return tableName; }
 }

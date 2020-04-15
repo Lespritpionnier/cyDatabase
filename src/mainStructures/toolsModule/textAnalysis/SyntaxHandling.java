@@ -273,7 +273,7 @@ public class SyntaxHandling {
         ExecutionTree root = TreeBuilder.buildTree(nodes);
         System.out.println(root.getFormulaRA());
         ExecutiveVisitor sucess = new ExecutiveVisitor();
-        ZonedData resultT = root.accept(sucess);
+        TableArchetype resultT = root.accept(sucess);
 //System.out.println("WE ARE THE CHAMPI "+resultT);
 //	String[][] testT = resultT.toTable();
 //System.out.println(testT.toString());

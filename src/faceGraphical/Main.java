@@ -1,4 +1,4 @@
-package faceGraphical.userInterface;
+package faceGraphical;
 
 public class Main {
 

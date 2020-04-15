@@ -10,8 +10,11 @@ import java.util.LinkedHashMap;
 
 
 public class TableDatabase extends TableArchetype implements ExecutionTree {
-    private LinkedHashMap<String,String> infoDatatype;
-    private String primaryKey; 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private LinkedHashMap<String,String> infoDatatype;
     private HashMap<String,String> foreignKeys;
     private int nextKey; //MAYBE RELATE TO SIZE()
     //private ArrayList<Integer> indexRanked = new ArrayList<>()
@@ -93,7 +96,6 @@ public class TableDatabase extends TableArchetype implements ExecutionTree {
 	}
     
     public String getColumnsType(String nameCol) { return infoDatatype.get(nameCol); }
-    public String getKeyName() { return primaryKey; }
 
     public int getNextKey() { return nextKey; }
 
