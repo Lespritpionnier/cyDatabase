@@ -3,7 +3,7 @@ package mainStructures.dataFramework;
 import mainStructures.nodeCommand.CommandProjectionSELECT;
 
 public interface ItemRow {
-
+	void setData(String s);
 	String getData();
 	int compareTo(String s);
 

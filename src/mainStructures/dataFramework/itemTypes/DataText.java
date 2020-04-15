@@ -13,6 +13,7 @@ public class DataText implements ItemRow {
         return data;
     }
 
+    @Override
     public void setData(String data) {
         this.data = data;
     }

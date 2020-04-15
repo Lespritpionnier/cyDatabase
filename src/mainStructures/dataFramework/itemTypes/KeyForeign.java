@@ -9,7 +9,10 @@ public class KeyForeign extends KeyPrimary {
     public KeyForeign(String data) {
         super(Long.parseLong(data));
     }
-
+	@Override
+	public void setData(String s) {
+		super.data=Long.getLong(s);
+	}
 	@Override
 	public String toString() {
 		return "KeyForeign:{"  + getData() +'}';

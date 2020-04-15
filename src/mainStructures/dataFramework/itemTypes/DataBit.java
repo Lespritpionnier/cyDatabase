@@ -13,6 +13,11 @@ public class DataBit implements ItemRow {
         SetValue(value);
     }
 
+    @Override
+    public void setData(String s) {
+        data = Boolean.getBoolean(s);
+    }
+
     public String getData() {
         return data.toString();
     }

@@ -4,10 +4,15 @@ import mainStructures.dataFramework.ItemRow;
 import mainStructures.dataFramework.exceptions.WrongDataTypeException;
 
 public class KeyPrimary implements ItemRow {
-    private Long data;
+    protected Long data;
 
     public KeyPrimary(long value) {
         data=value;
+    }
+
+    @Override
+    public void setData(String s) {
+
     }
 
     public String getData() {

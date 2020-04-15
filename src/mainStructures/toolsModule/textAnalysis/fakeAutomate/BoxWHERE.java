@@ -15,4 +15,8 @@ public class BoxWHERE {
     public ExecutionTree makeNode() {
         return new CommandSelectionWHERE(conditions);
     }
+
+    public ArrayList<String> getConditions() {
+        return conditions;
+    }
 }

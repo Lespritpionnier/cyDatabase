@@ -21,7 +21,10 @@ public class DataNumber implements ItemRow {
 	public int compareTo(String s) {
 		return data.toString().compareTo(s);
 	}
-	
+    @Override
+    public void setData(String s) {
+        data=Double.valueOf(s);
+    }
     @Override
     public String toString() {
         return "DataNumber{" +

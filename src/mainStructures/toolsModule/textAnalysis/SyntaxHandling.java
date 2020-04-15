@@ -6,7 +6,8 @@ import mainStructures.dataFramework.TableArchetype;
 import mainStructures.dataFramework.TableDatabase;
 import mainStructures.dataFramework.itemTypes.*;
 import mainStructures.nodeCommand.ExecutionTree;
-import mainStructures.toolsModule.dealDatagram.ZonedData;
+import mainStructures.toolsModule.dealDatagram.WhereFilter;
+import mainStructures.toolsModule.dealDatagram.WhereSetter;
 import mainStructures.toolsModule.textAnalysis.fakeAutomate.*;
 import mainStructures.toolsModule.treeExcutable.ExecutiveVisitor;
 import mainStructures.toolsModule.treeExcutable.TreeBuilder;
@@ -15,7 +16,9 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class SyntaxHandling {
-
+    //For text label in GUI
+    String message;
+    public String getMessage() { return message; }
 
     HashMap<String, TableDatabase> myTables;
 
@@ -71,25 +74,17 @@ public class SyntaxHandling {
     private TableArchetype doUPDATE() {
         String temp;
         temp = handling.nextToken();
-        return null;
-    }
-
-    private TableArchetype doDELETE() {
-        String temp;
+        TableDatabase but = myTables.get(temp);
         temp = handling.nextToken();
-        if (temp.equals("FROM")) {
-            temp = handling.nextToken();
-            nodes.add(myTables.get(temp));
-            temp = handling.nextToken();
-            /*BoxFROM boxFrom = new BoxFROM(temp);
-            nodes.add(boxFrom.makeNode());
-            temp = handling.nextToken();*/
-//System.out.println("FROM"+nodes);
+        if (temp.equals("SET")){
+            ArrayList<String> setInfo = new ArrayList<>();
+            while (!temp.equals("WHERE")){
+                temp = handling.nextToken();
+                    whereInfo.add(temp);
+            }
         }
-
         if (temp.equals("WHERE")){
             ArrayList<String> whereInfo = new ArrayList<>();
-            ///////////////////En 3 parties
             while (handling.hasMoreTokens()){
                 temp = handling.nextToken();
                 if (!temp.equals("AND")){
@@ -97,11 +92,27 @@ public class SyntaxHandling {
                 }
             }
             BoxWHERE boxWhere = new BoxWHERE(whereInfo);
-            nodes.add(1,boxWhere.makeNode());
         }
+        return WhereSetter.doWork(myTables.get(table),setInfo,whereInfo);
+    }
 
-
-        return null;
+    private TableArchetype doDELETE() {
+        String temp;
+        temp = handling.nextToken();
+        if (temp.equals("FROM")) {
+            TableDatabase aim = myTables.get(temp);
+        }
+        if (temp.equals("WHERE")){
+            ArrayList<String> whereInfo = new ArrayList<>();
+            while (handling.hasMoreTokens()){
+                temp = handling.nextToken();
+                if (!temp.equals("AND")){
+                    whereInfo.add(temp);
+                }
+            }
+            BoxWHERE boxWhere = new BoxWHERE(whereInfo);
+        }
+        return WhereFilter.goWork(whereInfo,aim);
     }
 
     private TableArchetype doINSERT() {
@@ -271,7 +282,7 @@ public class SyntaxHandling {
         }
 
         ExecutionTree root = TreeBuilder.buildTree(nodes);
-        System.out.println(root.getFormulaRA());
+        message = root.getFormulaRA();
         ExecutiveVisitor sucess = new ExecutiveVisitor();
         TableArchetype resultT = root.accept(sucess);
 //System.out.println("WE ARE THE CHAMPI "+resultT);

@@ -19,7 +19,12 @@ public class DataDate implements ItemRow {
         data=value;
     }
 
-	@Override
+    @Override
+    public void setData(String s) {
+        data=s;
+    }
+
+    @Override
 	public String getData() {
 		// TODO Auto-generated method stub
 		return data;
