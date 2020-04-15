@@ -1,9 +1,9 @@
-package mainStructures.toolsModule.makeAnalysis.comdAutomate;
+package mainStructures.toolsModule.textAnalysis.fakeAutomate;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import mainStructures.textCommands.nodesPart.ExecutionTree;
+import mainStructures.nodeCommand.ExecutionTree;
 
 public abstract class AutoBoxArchetype {
     private ArrayList<ExecutionTree> nodes;

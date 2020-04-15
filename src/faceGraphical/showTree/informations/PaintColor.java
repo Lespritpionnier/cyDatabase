@@ -5,9 +5,9 @@ import java.awt.Graphics;
 
 import faceGraphical.showTree.informations.ColorStrategt;
 import mainStructures.dataFramework.TableDatabase;
-import mainStructures.textCommands.nodesPart.CommandJointJOIN;
-import mainStructures.textCommands.nodesPart.CommandProjectionSELECT;
-import mainStructures.textCommands.nodesPart.CommandSelectionWHERE;
+import mainStructures.nodeCommand.CommandJointJOIN;
+import mainStructures.nodeCommand.CommandProjectionSELECT;
+import mainStructures.nodeCommand.CommandSelectionWHERE;
 
 
 public class PaintColor implements ColorStrategt {

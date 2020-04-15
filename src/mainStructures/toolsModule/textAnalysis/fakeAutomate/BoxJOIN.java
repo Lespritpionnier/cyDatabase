@@ -1,9 +1,6 @@
-package mainStructures.toolsModule.makeAnalysis.comdAutomate;
+package mainStructures.toolsModule.textAnalysis.fakeAutomate;
 
-import mainStructures.dataFramework.TableDatabase;
-import mainStructures.textCommands.nodesPart.CommandJointJOIN;
-
-import java.util.ArrayList;
+import mainStructures.nodeCommand.CommandJointJOIN;
 
 public class BoxJOIN{
     private String choiceON ;

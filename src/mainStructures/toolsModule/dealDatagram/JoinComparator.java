@@ -3,24 +3,19 @@ package mainStructures.toolsModule.dealDatagram;
 import java.util.Iterator;
 
 import mainStructures.dataFramework.RowTable;
-import mainStructures.dataFramework.TableDatabase;
+import mainStructures.dataFramework.TableArchetype;
 
 public class JoinComparator {
 
-	public static TableDatabase goWork(String key, TableDatabase tab1, TableDatabase tab2) {
+	public static TableArchetype goWork(String key, TableArchetype tab1, TableArchetype tab2) {
 //System.out.println("ARE YOU  WORKING "+key);
 		if(key.equals(tab2.getKeyName())) {
-			Iterator<RowTable> iterator = tab1.iterator();
-			while (iterator.hasNext()) {
-				RowTable row = iterator.next();
-//System.out.println(row.get(key));
-				RowTable rowAdded = tab2.get(Integer.valueOf(row.get(key).getData())-1);
+			for (RowTable row : tab1) {
+				//System.out.println(row.get(key));
+				RowTable rowAdded = tab2.get(Integer.parseInt(row.get(key).getData()) - 1);
 				row.putAll(rowAdded);
 			}
 		}
 		return tab1;
 	}
-
-
-
 }

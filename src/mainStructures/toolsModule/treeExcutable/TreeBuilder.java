@@ -3,7 +3,7 @@ package mainStructures.toolsModule.treeExcutable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import mainStructures.textCommands.nodesPart.ExecutionTree;
+import mainStructures.nodeCommand.ExecutionTree;
 
 public class TreeBuilder {
 	

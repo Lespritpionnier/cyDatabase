@@ -2,11 +2,11 @@ package faceGraphical.showTree;
 
 
 import mainStructures.dataFramework.TableDatabase;
-import mainStructures.textCommands.nodesPart.CommandJointJOIN;
-import mainStructures.textCommands.nodesPart.CommandArchetypeNode;
-import mainStructures.textCommands.nodesPart.CommandProjectionSELECT;
-import mainStructures.textCommands.nodesPart.CommandSelectionWHERE;
-import mainStructures.textCommands.nodesPart.ExecutionTree;
+import mainStructures.nodeCommand.CommandArchetypeNode;
+import mainStructures.nodeCommand.CommandJointJOIN;
+import mainStructures.nodeCommand.CommandProjectionSELECT;
+import mainStructures.nodeCommand.CommandSelectionWHERE;
+import mainStructures.nodeCommand.ExecutionTree;
 
 
 

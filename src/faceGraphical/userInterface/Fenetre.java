@@ -12,9 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
+import mainStructures.dataFramework.TableArchetype;
 import mainStructures.dataFramework.TableDatabase;
-import mainStructures.saveStockpile.CyDatabase;
-import mainStructures.toolsModule.makeAnalysis.SyntaxHandling;
+import mainStructures.toolsModule.textAnalysis.SyntaxHandling;
+import mainStructures.unitStockpile.CyDatabase;
 
 
 public class Fenetre extends JFrame {
@@ -71,9 +72,9 @@ public Fenetre(){
 		  public void actionPerformed(ActionEvent e) {
 			  String requis = textArea.getText();
 			  SyntaxHandling synSQL = new SyntaxHandling(myDB.getMyTables(),requis);
-			  TableDatabase pre = synSQL.makeNodes();
+			  TableArchetype pre = synSQL.makeNodes();
 			  
-		  	  String[][] data = pre.toTable();
+		  	  String[][] data = pre.toJTable();
 			  String title[] = pre.getTitle();
 			  ZModel model = new ZModel(data, title);
 			  tableau.setModel(model);

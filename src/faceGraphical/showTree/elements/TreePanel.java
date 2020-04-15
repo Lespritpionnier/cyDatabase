@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import faceGraphical.showTree.informations.HightVisitor;
 import faceGraphical.showTree.informations.IconsStyle;
-import mainStructures.textCommands.nodesPart.ExecutionTree;
+import mainStructures.nodeCommand.ExecutionTree;
 
 public class TreePanel  extends JPanel {
 	private ExecutionTree tree;

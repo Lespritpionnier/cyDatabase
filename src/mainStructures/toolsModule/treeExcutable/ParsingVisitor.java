@@ -1,7 +1,9 @@
 package mainStructures.toolsModule.treeExcutable;
 
 import mainStructures.dataFramework.TableDatabase;
-import mainStructures.textCommands.nodesPart.*;
+import mainStructures.nodeCommand.CommandJointJOIN;
+import mainStructures.nodeCommand.CommandProjectionSELECT;
+import mainStructures.nodeCommand.CommandSelectionWHERE;
 
 public interface ParsingVisitor<T> {
 

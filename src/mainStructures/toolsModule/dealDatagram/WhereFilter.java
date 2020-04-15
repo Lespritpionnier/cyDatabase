@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import mainStructures.dataFramework.RowTable;
-import mainStructures.dataFramework.TableDatabase;
-import mainStructures.dataFramework.itemTypes.DataBit;
-import mainStructures.dataFramework.itemTypes.DataNumber;
-import mainStructures.dataFramework.itemTypes.DataText;
-import mainStructures.dataFramework.itemTypes.KeyForeign;
-import mainStructures.textCommands.nodesPart.ExecutionTree;
+import mainStructures.dataFramework.TableArchetype;
 
 public class WhereFilter {
-	
-	public static TableDatabase goWork(ArrayList<String> pre, TableDatabase tab) {
-		
+	public static TableArchetype goWork(ArrayList<String> pre, TableArchetype tab) {
 		Iterator<String> iterator = pre.iterator();
 		while (iterator.hasNext()) {
 			String who = iterator.next();
@@ -24,9 +17,9 @@ public class WhereFilter {
 			String how = iterator.next();
 			String when = iterator.next();
 //System.out.println(when+"Wowen "+ how);
+			Iterator<RowTable> iter = tab.iterator();
 	        switch (how){
 	            case ">": {
-	            	Iterator<RowTable> iter = tab.iterator();
 	            	while (iter.hasNext()) { 
 	            		RowTable now = iter.next();
 	            		if(now.get(who).compareTo(when)<=0) {
@@ -36,7 +29,6 @@ public class WhereFilter {
 	                break;
 	            }
 	            case ">=": {
-	            	Iterator<RowTable> iter = tab.iterator();
 	            	while (iter.hasNext()) {
 	            		RowTable now = iter.next();
 	            		if(now.get(who).compareTo(when)<0) {
@@ -47,15 +39,26 @@ public class WhereFilter {
 	                break;
 	            }
 	            case "<": {
-	                
+					while (iter.hasNext()) {
+						RowTable now = iter.next();
+						if(now.get(who).compareTo(when)>=0) {
+							System.out.println(now.get(who));
+							iter.remove();
+						}
+					}
 	                break;
 	            }
 	            case "<=": {
-	               
+					while (iter.hasNext()) {
+						RowTable now = iter.next();
+						if(now.get(who).compareTo(when)>0) {
+							System.out.println(now.get(who));
+							iter.remove();
+						}
+					}
 	                break;
 	            }
 	            case "=": {
-	            	Iterator<RowTable> iter = tab.iterator();
 	            	while (iter.hasNext()) {
 	            		RowTable now = iter.next();
 	            		if(!now.get(who).getData().equals(when)) {
@@ -66,14 +69,18 @@ public class WhereFilter {
 	                break;
 	            }
 	            case "<>": {
-		               
+					while (iter.hasNext()) {
+						RowTable now = iter.next();
+						if(now.get(who).getData().equals(when)) {
+							System.out.println(now.get(who));
+							iter.remove();
+						}
+					}
 	                break;
 	            }
 	        }
 		}
-		
 		return tab;
 //System.out.println("ARE YOU  WORKING "+key);
-				
-			}
+	}
 }

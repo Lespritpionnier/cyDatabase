@@ -1,6 +1,5 @@
 package mainStructures.dataFramework.itemTypes;
 import mainStructures.dataFramework.ItemRow;
-import mainStructures.toolsModule.makeAnalysis.comdAutomate.BoxSELECT;
 
 public class DataBit implements ItemRow {
     private Boolean data;

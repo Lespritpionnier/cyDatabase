@@ -1,6 +1,6 @@
 package mainStructures.dataFramework;
 
-import mainStructures.textCommands.nodesPart.CommandProjectionSELECT;
+import mainStructures.nodeCommand.CommandProjectionSELECT;
 
 public interface ItemRow {
 
