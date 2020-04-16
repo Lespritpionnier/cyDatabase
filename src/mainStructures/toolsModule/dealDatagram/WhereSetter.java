@@ -13,16 +13,24 @@ public class WhereSetter {
         int knife = who.indexOf(".")+1;
         who = who.substring(knife, who.length());
         String what = set.get(2);
-
+        
+     System.out.println("WHO "+ who);
+     System.out.println("TAB "+ tab);
+     
         String when = where.get(0);
         knife = when.indexOf(".")+1;
         when = when.substring(knife, when.length());
-        how = where.get(2);
-
-        for (RowTable now : tab) {
-            if (!now.get(when).getData().equals(how)) {
-//System.out.println(now.get(when));
-                now.get(who).setData(what);
+        String how = where.get(2);
+        System.out.println(when + how + what);
+        System.out.println(set);
+        System.out.println(where);
+        
+        Iterator<RowTable> iter = tab.iterator();
+        while (iter.hasNext()) {
+        	RowTable now = iter.next();
+        	now.get(who).setData(what);
+        	System.out.println(now.get(when));
+    		if(!now.get(when).getData().equals(how)) {
             }
         }
         return tab;

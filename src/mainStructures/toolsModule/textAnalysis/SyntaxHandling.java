@@ -6,6 +6,7 @@ import mainStructures.dataFramework.TableArchetype;
 import mainStructures.dataFramework.TableDatabase;
 import mainStructures.dataFramework.itemTypes.*;
 import mainStructures.nodeCommand.ExecutionTree;
+import mainStructures.toolsModule.dealDatagram.WhereDropper;
 import mainStructures.toolsModule.dealDatagram.WhereFilter;
 import mainStructures.toolsModule.dealDatagram.WhereSetter;
 import mainStructures.toolsModule.textAnalysis.fakeAutomate.*;
@@ -48,6 +49,7 @@ public class SyntaxHandling {
         String temp;
         if (handling.hasMoreTokens()){
             temp = handling.nextToken();
+System.out.println(temp);
             //////////////////////////////////////////////////////////////////////////////////////////////////SELECT
             if(temp.equals("SELECT")){
                 return doSELECT(temp);
@@ -73,46 +75,48 @@ public class SyntaxHandling {
 
     private TableArchetype doUPDATE() {
         String temp;
+        String but = handling.nextToken();
         temp = handling.nextToken();
-        TableDatabase but = myTables.get(temp);
-        temp = handling.nextToken();
+        ArrayList<String> setInfo = new ArrayList<>();
         if (temp.equals("SET")){
-            ArrayList<String> setInfo = new ArrayList<>();
+        	temp = handling.nextToken();
             while (!temp.equals("WHERE")){
-                temp = handling.nextToken();
-                    whereInfo.add(temp);
+                    setInfo.add(temp);
+                    temp = handling.nextToken();
             }
         }
+        ArrayList<String> whereInfo = new ArrayList<>();
         if (temp.equals("WHERE")){
-            ArrayList<String> whereInfo = new ArrayList<>();
             while (handling.hasMoreTokens()){
                 temp = handling.nextToken();
                 if (!temp.equals("AND")){
                     whereInfo.add(temp);
                 }
             }
-            BoxWHERE boxWhere = new BoxWHERE(whereInfo);
         }
-        return WhereSetter.doWork(myTables.get(table),setInfo,whereInfo);
+        System.out.println("BUT "+ but);
+        return WhereSetter.doWork(myTables.get(but),setInfo,whereInfo);
     }
 
     private TableArchetype doDELETE() {
         String temp;
         temp = handling.nextToken();
-        if (temp.equals("FROM")) {
-            TableDatabase aim = myTables.get(temp);
-        }
+        temp = handling.nextToken();
+        TableDatabase aim = myTables.get(temp);
+System.out.println(temp);
+        ArrayList<String> whereInfo = new ArrayList<>();        
+        temp = handling.nextToken();
         if (temp.equals("WHERE")){
-            ArrayList<String> whereInfo = new ArrayList<>();
+        	//System.out.println(nameToTable);
             while (handling.hasMoreTokens()){
                 temp = handling.nextToken();
                 if (!temp.equals("AND")){
                     whereInfo.add(temp);
                 }
+ System.out.println(whereInfo);
             }
-            BoxWHERE boxWhere = new BoxWHERE(whereInfo);
         }
-        return WhereFilter.goWork(whereInfo,aim);
+        return WhereDropper.goWork(whereInfo,aim);
     }
 
     private TableArchetype doINSERT() {

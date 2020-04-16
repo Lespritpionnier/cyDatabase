@@ -11,22 +11,23 @@ public class SelectProjector {
 		switch (dataWanted.get(0)) {
 			case "*":
 				return tab;
-
-			case "DISTINCT":
-				return tab;
+				
+			case "SUM":
+			
+			case "AVG":
+				
+			case "MIN":
 
 			case "MAX":
-
-				return tab;
-
-			case "AVG":
+					
+			case "COUNT":
+				
+			default:
+				String[] title = new String[dataWanted.size()];
+				dataWanted.toArray(title);
+				tab.setTitle(title);
+//System.out.println(tab.getTitle());
 				return tab;
 		}
-
-		String[] title = new String[dataWanted.size()];
-		dataWanted.toArray(title);
-		tab.setTitle(title);
-//System.out.println(tab.getTitle());
-		return tab;
 	}
 }

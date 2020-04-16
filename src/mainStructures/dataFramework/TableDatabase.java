@@ -35,7 +35,11 @@ public class TableDatabase extends TableArchetype implements ExecutionTree {
 
     //Think about REMOVE()
 
-    public ZonedData toVirtual () {
+    public TableDatabase() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ZonedData toVirtual () {
     	ZonedData virtual = new ZonedData(title,tableName);
     	virtual.addAll(this);
     	return virtual;

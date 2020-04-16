@@ -19,7 +19,7 @@ public abstract class TableArchetype extends ArrayList<RowTable> {
         for(int i=0; i<this.size(); i++) {
             for(int j = 0; j<title.length; j++) {
                 jTable[i][j]= this.get(i).get(title[j]).getData();
-                System.out.println(this.get(i).get(title[j]).getData());
+//System.out.println(this.get(i).get(title[j]).getData());
             }
         }
         return jTable;

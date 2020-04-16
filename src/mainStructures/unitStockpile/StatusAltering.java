@@ -23,18 +23,20 @@ public class  StatusAltering {
             alteration.add(filename.toString());
             filename.delete(0,5);
         }
+System.out.println(alteration);
         peek = false;
     }
 
     public void markStatus(CyDatabase status) {
-        if (cursor==sizeMax){
+        if (cursor==sizeMax-1){
             String tem = alteration.pollFirst();
             saveStatus(status,tem);
             alteration.add(tem);
         }else {
-            saveStatus(status, alteration.get(++cursor));
+            saveStatus(status, alteration.get(cursor++));
             peek = false;
         }
+        System.out.println(alteration);
     }
 
     public void saveStatus(CyDatabase status, String fileName) {
@@ -44,7 +46,9 @@ public class  StatusAltering {
             stream.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
+            System.err.println("48");
         }
+        System.out.println(alteration);
     }
     public CyDatabase readStatus(String fileName) {
         try {
@@ -54,6 +58,7 @@ public class  StatusAltering {
             return status;
         } catch (ClassNotFoundException | IOException e) {
             System.err.println(e.getMessage());
+            System.err.println("61");
         }
         return null;
     }

@@ -7,12 +7,12 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class ZModel extends AbstractTableModel{
+public class JTModel extends AbstractTableModel{
 	  private String[][] data;
 	  private String[] title;
 
 	  //Constructeur
-	  public ZModel(String[][] data, String[] title){
+	  public JTModel(String[][] data, String[] title){
 	    this.data = data;
 	    this.title = title;
 	  }
