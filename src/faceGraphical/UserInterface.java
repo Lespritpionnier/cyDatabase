@@ -29,7 +29,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class UserInterface extends JFrame {
 
-	protected JLabel lblNewLabel = new JLabel("Here is for important message :)");
+	protected JLabel mess = new JLabel("Here is for important message :)");
 	protected JTextField checkField = new JTextField(30);
 	
 	private JTable tableau;
@@ -88,7 +88,7 @@ public UserInterface(){
 	  
 	  btnUndo.setBounds(137, 52, 125, 40);
 	  pan.add(btnUndo);
-	  
+
 	  btnRedo.setBounds(10, 52, 125, 40);
 	  pan.add(btnRedo);
 	  
@@ -114,11 +114,12 @@ public UserInterface(){
 			  TableArchetype pre = synSQL.makeNodes();
 			  
 		  	  String[][] data = pre.toJTable();
-			  String title[] = pre.getTitle();
+			  String[] title = pre.getTitle();
 			  JTModel model = new JTModel(data, title);
 			  tableau.setModel(model);
 			  textArea.setText("");
 			  stock.markStatus(myDB);
+			  mess.setText(synSQL.getMessage());
 		  }
 		  
 	  }
@@ -140,7 +141,7 @@ public UserInterface(){
 						fs[i].getAbsolutePath();
 					}
 				}
-				checkField.setText(chose.getSelectedFile().getAbsolutePath()+"/");
+				checkField.setText(chose.getSelectedFile().getAbsolutePath()+"/CyDatabase.ser");
 			}
 		}
 	 btnPath.addActionListener(new OutCheckAction());
@@ -151,29 +152,19 @@ public UserInterface(){
 	 class SaveAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				//checkField;
+				stock.saveStatus(myDB,checkField.getText());
 			}
 		}
 	 	btnSave.addActionListener(new SaveAction());
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+
+	class ImportAction implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			stock.readStatus(checkField.getText());
+		}
+	}
+	btnImport.addActionListener(new ImportAction());
+
 	 
 	}
 

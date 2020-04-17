@@ -7,7 +7,6 @@ import mainStructures.dataFramework.TableDatabase;
 import mainStructures.dataFramework.itemTypes.*;
 import mainStructures.nodeCommand.ExecutionTree;
 import mainStructures.toolsModule.dealDatagram.WhereDropper;
-import mainStructures.toolsModule.dealDatagram.WhereFilter;
 import mainStructures.toolsModule.dealDatagram.WhereSetter;
 import mainStructures.toolsModule.textAnalysis.fakeAutomate.*;
 import mainStructures.toolsModule.treeExcutable.ExecutiveVisitor;
@@ -76,6 +75,7 @@ System.out.println(temp);
     private TableArchetype doUPDATE() {
         String temp;
         String but = handling.nextToken();
+        message = "UPDATE: "+but;
         temp = handling.nextToken();
         ArrayList<String> setInfo = new ArrayList<>();
         if (temp.equals("SET")){
@@ -103,6 +103,7 @@ System.out.println(temp);
         temp = handling.nextToken();
         temp = handling.nextToken();
         TableDatabase aim = myTables.get(temp);
+        message = "DELETE: "+aim;
 System.out.println(temp);
         ArrayList<String> whereInfo = new ArrayList<>();        
         temp = handling.nextToken();
@@ -123,6 +124,7 @@ System.out.println(temp);
         String temp;
         temp = handling.nextToken();
         String nameToTable = handling.nextToken();
+        message = "INSERT IN: "+nameToTable;
         temp = handling.nextToken();
         ArrayList<String> toNameCol = new ArrayList<String>();
         //      		System.out.println(temp);
@@ -153,7 +155,7 @@ System.out.println(temp);
         String temp;
         temp = handling.nextToken();
         String nameNewTable  = handling.nextToken();
-
+        message = "CREAT: "+nameNewTable;
         ArrayList<String> keyHT = new ArrayList<>();
         ArrayList<String> valueHT = new ArrayList<>();
         LinkedHashMap<String,String> infoDatatype = new LinkedHashMap<>();
@@ -219,6 +221,8 @@ System.out.println(temp);
         myTables.put(nameNewTable,yeahTable);
         return yeahTable;
     }
+
+
 
     private TableArchetype doSELECT(String temp) {
         ArrayList<String> selectInfo = new ArrayList<>();
