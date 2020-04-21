@@ -1,11 +1,11 @@
 package faceGraphical;
 
-import java.awt.Component;
-
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
+
+/**
+ * This is the model of JTable
+ */
 
 public class JTModel extends AbstractTableModel{
 	  private String[][] data;

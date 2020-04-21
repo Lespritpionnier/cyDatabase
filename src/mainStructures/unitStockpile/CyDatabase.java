@@ -13,13 +13,13 @@ import java.util.HashMap;
 
 import mainStructures.dataFramework.TableDatabase;
 
-
+/**
+ * Database is a space of Table, like all SGBD
+ * For this software, we only allow 1 Database exist
+ */
 
 public class CyDatabase implements Serializable {
-    @Override
-	public String toString() {
-		return "CyDatabase [myTables=" + myTables + "]";
-	}
+	private static final long serialVersionUID = 1L;
 
 
 
@@ -53,19 +53,15 @@ public class CyDatabase implements Serializable {
 		}
 	}
 
-	
-
 	public void serializationRead(String fileName) {
 		try {
 			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(fileName));
 			TableDatabase table = null;
 			while ((table = (TableDatabase) stream.readObject()) != null) {
 				this.addTable(table);
-
 			}
 			stream.close();
 		} catch (EOFException e) {
-			// No message predefined, we have to write here our own message.
 			System.out.println("End of file reading");
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getMessage());
@@ -74,5 +70,10 @@ public class CyDatabase implements Serializable {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "CyDatabase [myTables=" + myTables + "]";
 	}
 }

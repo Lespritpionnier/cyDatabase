@@ -1,12 +1,13 @@
 package mainStructures.dataFramework.itemTypes;
 
-public class KeyForeign extends KeyPrimary {
-    /*
-    String aimedTable;
-    String aimedKey;
-     */
+/**
+ * This is the type FOREIGN KEY
+ */
 
-    public KeyForeign(String data) {
+public class KeyForeign extends KeyPrimary {
+
+	private static final long serialVersionUID = 1L;
+	public KeyForeign(String data) {
         super(Long.parseLong(data));
     }
 	@Override

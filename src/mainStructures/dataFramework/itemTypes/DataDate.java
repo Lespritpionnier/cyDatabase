@@ -2,8 +2,15 @@ package mainStructures.dataFramework.itemTypes;
 
 import mainStructures.dataFramework.ItemRow;
 
+/**
+ * This is the type Date
+ */
+
+
 public class DataDate implements ItemRow {
-    private String data;
+
+	private static final long serialVersionUID = 1L;
+	private String data;
 
 	@Override
 	public int compareTo(String s) {
@@ -26,7 +33,6 @@ public class DataDate implements ItemRow {
 
     @Override
 	public String getData() {
-		// TODO Auto-generated method stub
 		return data;
 	}
 

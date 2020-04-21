@@ -5,7 +5,12 @@ import java.util.Iterator;
 
 import mainStructures.dataFramework.RowTable;
 import mainStructures.dataFramework.TableArchetype;
-
+/**
+ * Service for Selection-WHERE
+ * This class only have a static method,
+ * 	which means we don't need to "new" it,
+ * 		which is good things for our program
+ */
 public class WhereFilter {
 	public static TableArchetype goWork(ArrayList<String> pre, TableArchetype tab) {
 		Iterator<String> iterator = pre.iterator();
@@ -13,10 +18,8 @@ public class WhereFilter {
 			String who = iterator.next();
 				int knife = who.indexOf(".")+1;
 				who = who.substring(knife, who.length());
-//System.out.println("WHO "+ who);
 			String how = iterator.next();
 			String when = iterator.next();
-//System.out.println(when+"Wowen "+ how);
 			Iterator<RowTable> iter = tab.iterator();
 	        switch (how){
 	            case ">": {
@@ -81,6 +84,5 @@ public class WhereFilter {
 	        }
 		}
 		return tab;
-//System.out.println("ARE YOU  WORKING "+key);
 	}
 }

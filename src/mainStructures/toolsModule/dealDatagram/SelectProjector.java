@@ -7,21 +7,25 @@ import mainStructures.dataFramework.RowTable;
 import mainStructures.dataFramework.TableArchetype;
 import mainStructures.dataFramework.itemTypes.DataNumber;
 
+/**
+ * Service for Projection-SELECT
+ * This class only have a static method,
+ * 	which means we don't need to "new" it,
+ * 		which is good things for our program
+ */
 public class SelectProjector {
-
 	public static TableArchetype goWork(ArrayList<String> dataWanted, TableArchetype tab) {
-//System.out.println(dataWanted);
+
 		switch (dataWanted.get(0)) {
 
 			case "*":
 				return tab;
 
-
 			case "SUM":
 				ZonedData sum = new ZonedData("SUM_"+dataWanted.get(1),tab.getName());
 				double add = 0.0;
 				Iterator<RowTable> iter1 = tab.iterator();
-				while (iterator.hasNext()){
+				while (iter1.hasNext()){
 					RowTable now = iter1.next();
 					add+=Double.parseDouble(now.get(dataWanted.get(1)).getData());
 				}
@@ -31,13 +35,12 @@ public class SelectProjector {
 				sum.add(sum2);
 				return sum;
 
-
 			case "AVG":
 				ZonedData avg = new ZonedData("AVG_"+dataWanted.get(1),tab.getName());
 				double even = 0.0;
 				int i=0;
 				Iterator<RowTable> iter2 = tab.iterator();
-				while (iterator.hasNext()){
+				while (iter2.hasNext()){
 					i++;
 					RowTable now = iter2.next();
 					even+=Double.parseDouble(now.get(dataWanted.get(1)).getData());
@@ -48,12 +51,11 @@ public class SelectProjector {
 				avg.add(avg2);
 				return avg;
 
-
 			case "MIN":
 				ZonedData min = new ZonedData("MIN_"+dataWanted.get(1),tab.getName());
 				double mini = 0.0;
 				Iterator<RowTable> iter3 = tab.iterator();
-				while (iterator.hasNext()){
+				while (iter3.hasNext()){
 					RowTable now = iter3.next();
 					if (Double.parseDouble(now.get(dataWanted.get(1)).getData())<mini){
 						mini = Double.parseDouble(now.get(dataWanted.get(1)).getData());
@@ -65,12 +67,11 @@ public class SelectProjector {
 				min.add(min2);
 				return min;
 
-
 			case "MAX":
 				ZonedData max = new ZonedData("MAX_"+dataWanted.get(1),tab.getName());
 				double big = 0.0;
 				Iterator<RowTable> iter4 = tab.iterator();
-				while (iterator.hasNext()){
+				while (iter4.hasNext()){
 					RowTable now = iter4.next();
 					if (Double.parseDouble(now.get(dataWanted.get(1)).getData())>big){
 						big = Double.parseDouble(now.get(dataWanted.get(1)).getData());
@@ -82,12 +83,11 @@ public class SelectProjector {
 				max.add(max2);
 				return max;
 
-
 			case "COUNT":
 				ZonedData count = new ZonedData("COUNT_"+dataWanted.get(1),tab.getName());
 				int num = 0;
 				Iterator<RowTable> iter5 = tab.iterator();
-				while (iterator.hasNext()){
+				while (iter5.hasNext()){
 					num++;
 				}
 				DataNumber count1 = new DataNumber(Double.toString(num));
@@ -96,13 +96,11 @@ public class SelectProjector {
 				count.add(count2);
 				return count;
 
-
 			default:
 				String[] title = new String[dataWanted.size()];
 				dataWanted.toArray(title);
 				tab.setTitle(title);
 				return tab;
-
 		}
 	}
 }

@@ -1,12 +1,10 @@
 package faceGraphical;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Random;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import mainStructures.dataFramework.TableArchetype;
-import mainStructures.dataFramework.TableDatabase;
 import mainStructures.toolsModule.textAnalysis.SyntaxHandling;
 import mainStructures.unitStockpile.CyDatabase;
 import mainStructures.unitStockpile.StatusAltering;
@@ -25,7 +22,9 @@ import mainStructures.unitStockpile.StatusAltering;
 import javax.swing.JLabel;
 import javax.swing.ScrollPaneConstants;
 
-
+/**
+ * This is the main body of IHM 
+ */
 
 public class UserInterface extends JFrame {
 
@@ -43,6 +42,7 @@ public class UserInterface extends JFrame {
 	private  JPanel pan = new JPanel();
 	JTextArea textArea = new JTextArea();
 	private   JScrollPane scrollPane_1 = new JScrollPane(textArea);
+	protected CyDatabase myDB = new CyDatabase();
 
 public UserInterface(){
 	  this.setLocationRelativeTo(null);
@@ -50,20 +50,14 @@ public UserInterface(){
 	  this.setTitle("CyDatabase");
 	  this.setSize(600, 500);
   
-	  CyDatabase myDB = new CyDatabase();
-	  StatusAltering stock = new StatusAltering();
-	  
-	  
-	  
-	  
+	  StatusAltering stock = new StatusAltering(myDB);
   	
 	  pan.setBounds(0, 320, 582, 133);
 	  pan.setLayout(null);
-	  lblNewLabel.setBounds(10, 100, 260, 30);
+	  mess.setBounds(10, 100, 260, 30);
 	  
-	  pan.add(lblNewLabel);
+	  pan.add(mess);
 	  btnSave.setBounds(90, 0, 90, 40);
-	
 	  
 	  pan.add(btnSave);
 	  btnImport.setBounds(180, 0, 90, 40);
@@ -74,22 +68,17 @@ public UserInterface(){
 	  scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 	  scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	  pan.add(scrollPane_1);
-	  //textArea.setColumns(30);
-	  //textArea.setPreferredSize( new Dimension(200, 100) );
 	  
 	  tableau = new JTable();
 	  tableau.setDefaultRenderer(JButton.class, new TableComponent());
 	  tableau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	  getContentPane().setLayout(null);
-//	  System.out.println("Nombre de colonne : " + model.getColumnCount());
-//	  System.out.println("Nombre de ligne : " + model.getRowCount());
-	  
 	  this.getContentPane().add(pan);
 	  
-	  btnUndo.setBounds(137, 52, 125, 40);
+	  btnUndo.setBounds(136, 53, 125, 40);
 	  pan.add(btnUndo);
 
-	  btnRedo.setBounds(10, 52, 125, 40);
+	  btnRedo.setBounds(10, 53, 125, 40);
 	  pan.add(btnRedo);
 	  
 	  btnPath.setBounds(0, 0, 90, 40);
@@ -101,7 +90,6 @@ public UserInterface(){
 	  scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 	  scrollPane.setBounds(0, 0, 582, 320);
 	  this.getContentPane().add(scrollPane);
-	  //affiche le scroll horizontal
 
 	  this.setVisible(true);
 
@@ -112,13 +100,12 @@ public UserInterface(){
 			  String requis = textArea.getText();
 			  SyntaxHandling synSQL = new SyntaxHandling(myDB.getMyTables(),requis);
 			  TableArchetype pre = synSQL.makeNodes();
-			  
 		  	  String[][] data = pre.toJTable();
 			  String[] title = pre.getTitle();
 			  JTModel model = new JTModel(data, title);
 			  tableau.setModel(model);
 			  textArea.setText("");
-			  stock.markStatus(myDB);
+			  stock.markStatus();
 			  mess.setText(synSQL.getMessage());
 		  }
 		  
@@ -141,7 +128,7 @@ public UserInterface(){
 						fs[i].getAbsolutePath();
 					}
 				}
-				checkField.setText(chose.getSelectedFile().getAbsolutePath()+"/CyDatabase.ser");
+				checkField.setText(chose.getSelectedFile().getAbsolutePath());
 			}
 		}
 	 btnPath.addActionListener(new OutCheckAction());
@@ -152,7 +139,7 @@ public UserInterface(){
 	 class SaveAction implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stock.saveStatus(myDB,checkField.getText());
+				stock.saveStatus(checkField.getText());
 			}
 		}
 	 	btnSave.addActionListener(new SaveAction());
@@ -165,7 +152,21 @@ public UserInterface(){
 	}
 	btnImport.addActionListener(new ImportAction());
 
+	class RedoAction implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			myDB = stock.redoStatus();
+		}
+	}
+	btnRedo.addActionListener(new RedoAction());
 	 
+	class UndoAction implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			myDB = stock.undoStatus();
+		}
+	}
+	btnUndo.addActionListener(new UndoAction());
 	}
 
 	public static void main(String[] args) {

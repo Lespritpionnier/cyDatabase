@@ -4,49 +4,50 @@ package mainStructures.unitStockpile;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Random;
-
+/**
+ * This class is for saving the status by Serialization
+ * The "undo" and "redo" are also base on Serialization
+ */
 public class  StatusAltering {
+	private CyDatabase CyDB;
     private LinkedList<String> alteration = new LinkedList<>();
     private int cursor = 0;
-    private int sizeMax = 5;
+    private int sizeMax = 7;
     private boolean peek;
 
-    public StatusAltering() {
-        String wesh="abcdefghijklmnopqrstuvwxyz";
-        Random random=new Random();
+    public StatusAltering(CyDatabase CyDB) {
+    	this.CyDB = CyDB;
+        String wesh="Good";
         StringBuilder filename = new StringBuilder();
         for (int j=0; j<sizeMax; j++){
-            for(int i=0;i<6;i++){
-                int number=random.nextInt(26);
-                filename.append(wesh.charAt(number));
-            }
+            filename.append(wesh);
             alteration.add(filename.toString());
-            filename.delete(0,5);
+            filename.delete(2,4);
         }
 System.out.println(alteration);
         peek = false;
     }
 
-    public void markStatus(CyDatabase status) {
+    public void markStatus() {
         if (cursor==sizeMax-1){
             String tem = alteration.pollFirst();
-            saveStatus(status,tem);
+            saveStatus(tem);
             alteration.add(tem);
+            peek = true;
         }else {
-            saveStatus(status, alteration.get(cursor++));
+            saveStatus(alteration.get(cursor++));
             peek = false;
         }
         System.out.println(alteration);
     }
 
-    public void saveStatus(CyDatabase status, String fileName) {
+    public void saveStatus(String fileName) {
         try {
             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(fileName));
-            stream.writeObject(status);
+            stream.writeObject(CyDB);
             stream.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
-            System.err.println("48");
         }
         System.out.println(alteration);
     }
@@ -58,7 +59,6 @@ System.out.println(alteration);
             return status;
         } catch (ClassNotFoundException | IOException e) {
             System.err.println(e.getMessage());
-            System.err.println("61");
         }
         return null;
     }
@@ -70,7 +70,7 @@ System.out.println(alteration);
         else return null;
     }
     public CyDatabase redoStatus() {
-        if (cursor<sizeMax)
+        if (cursor<sizeMax||peek)
             return readStatus(alteration.get(++cursor));
         else return null;
     }

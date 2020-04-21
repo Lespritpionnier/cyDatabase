@@ -1,8 +1,13 @@
 package mainStructures.dataFramework.itemTypes;
 import mainStructures.dataFramework.ItemRow;
 
+/**
+ * This is the type BIT
+ */
+
 public class DataBit implements ItemRow {
-    private Boolean data;
+	private static final long serialVersionUID = 1L;
+	private Boolean data;
     
 	@Override
 	public int compareTo(String s) {

@@ -14,14 +14,17 @@ import mainStructures.toolsModule.treeExcutable.TreeBuilder;
 
 import java.util.*;
 import java.util.regex.Pattern;
-
+/**
+ * The main part of analyze the request SQL
+ * 	It can also mark some information of command
+ * 		like relational algebra formal of SELECT
+ */
 public class SyntaxHandling {
     //For text label in GUI
     String message;
     public String getMessage() { return message; }
 
     HashMap<String, TableDatabase> myTables;
-
 
     String request;
     ArrayList<ExecutionTree> nodes = new ArrayList<>();
@@ -37,31 +40,25 @@ public class SyntaxHandling {
         this.myTables = myTables;
         this.request = request;
         String convertS = convertSyntax(request);
-//System.out.println(convertS);
         StringTokenizer handling = new StringTokenizer(convertS);
         this.handling=handling;
     }
 
 
-    //This method needs to be improved a bit
     public TableArchetype makeNodes() {
         String temp;
         if (handling.hasMoreTokens()){
             temp = handling.nextToken();
-System.out.println(temp);
-            //////////////////////////////////////////////////////////////////////////////////////////////////SELECT
+            
             if(temp.equals("SELECT")){
                 return doSELECT(temp);
             }
-            //////////////////////////////////////////////////////////////////////////////////////////////////CREAT
             if(temp.equals("CREATE")){
                 return doCREATE();
             }
-            //////////////////////////////////////////////////////////////////////////////////////////////////INSERT
             if(temp.equals("INSERT")) {
                 return doINSERT();
             }
-            //////////////////////////////////////////////////////////////////////////////////////////////////DELETE
             if(temp.equals("DELETE")) {
                 return doDELETE();
             }
@@ -104,11 +101,9 @@ System.out.println(temp);
         temp = handling.nextToken();
         TableDatabase aim = myTables.get(temp);
         message = "DELETE: "+aim;
-System.out.println(temp);
         ArrayList<String> whereInfo = new ArrayList<>();        
         temp = handling.nextToken();
         if (temp.equals("WHERE")){
-        	//System.out.println(nameToTable);
             while (handling.hasMoreTokens()){
                 temp = handling.nextToken();
                 if (!temp.equals("AND")){
@@ -124,21 +119,14 @@ System.out.println(temp);
         String temp;
         temp = handling.nextToken();
         String nameToTable = handling.nextToken();
-        message = "INSERT IN: "+nameToTable;
+        message = "INSERT INTO: "+nameToTable;
         temp = handling.nextToken();
         ArrayList<String> toNameCol = new ArrayList<String>();
-        //      		System.out.println(temp);
         while (!temp.equals("VALUES")){toNameCol.add(temp); temp = handling.nextToken();}
         ArrayList<String> newDataCol = new ArrayList<>();
         while (handling.hasMoreTokens()){temp = handling.nextToken(); newDataCol.add(temp); }
         RowTable welcome = new RowTable();
         for (int index=0 ; index<toNameCol.size() ; index++){
-
-//System.out.println("begain " + toNameCol.get(index));
-//System.out.println(nameToTable);
-//System.out.println(newDataCol.get(index)+" end");
-//System.out.println(myTables.get(nameToTable));
-//System.out.println(myTables);
 
             welcome.put(toNameCol.get(index),
                     makeItem(
@@ -160,10 +148,8 @@ System.out.println(temp);
         ArrayList<String> valueHT = new ArrayList<>();
         LinkedHashMap<String,String> infoDatatype = new LinkedHashMap<>();
 
-
         temp = handling.nextToken();
         int wish = 2;
-//System.out.println(temp +"  "+ wish);
         do { if(wish%2==0){
                 keyHT.add(temp);
         } else {
@@ -176,7 +162,6 @@ System.out.println(temp);
                 temp = handling.nextToken();
                 wish++;
             }
-//System.out.println(temp +"  "+ wish);
             if(wish%2!=0) {
               valueHT.add(temp);
             }else {
@@ -184,7 +169,6 @@ System.out.println(temp);
             }
         }
             wish++;
-//System.out.println(temp +"  "+ wish);
             temp = handling.nextToken();
         }while (!temp.equals("PRIMARY"));
 
@@ -193,7 +177,6 @@ System.out.println(temp);
 
             infoDatatype.put(keyHT.get(index) , valueHT.get(index));
         }
-//System.out.println(keyHT +" " + valueHT+"????????????"+infoDatatype);
         TableDatabase yeahTable = new TableDatabase(nameNewTable,infoDatatype);
 
         String [] title = new String[keyHT.size()];
@@ -206,7 +189,6 @@ System.out.println(temp);
             while (temp.equals("FOREIGN")) {
                 temp = handling.nextToken();
                 String nameFoKey = handling.nextToken();
-//System.out.println("FOREIGN "+nameFoKey);
                 temp = handling.nextToken();
                 String nameTableF = handling.nextToken();
                 foreignKeys.put(nameFoKey, nameTableF);
@@ -216,7 +198,6 @@ System.out.println(temp);
                 }
             }
             yeahTable.setForeignKeys(foreignKeys);
-//System.out.println(foreignKeys);
         }
         myTables.put(nameNewTable,yeahTable);
         return yeahTable;
@@ -236,71 +217,55 @@ System.out.println(temp);
         }
         BoxSELECT boxSelect = new BoxSELECT(selectInfo);
         nodes.add(boxSelect.makeNode());
-//System.out.println("afsfasfsaf"+selectInfo);
-        //       }
 
 
         if (temp.equals("FROM")) {
             temp = handling.nextToken();
             nodes.add(myTables.get(temp));
-            temp = handling.nextToken();
-            /*BoxFROM boxFrom = new BoxFROM(temp);
-            nodes.add(boxFrom.makeNode());
-            temp = handling.nextToken();*/
-//System.out.println("FROM"+nodes);
         }
 
-
+        if(handling.hasMoreElements()) {
+        temp = handling.nextToken();
         while (temp.equals("INNER")){
-//System.out.println("Hello JOIN");
             temp = handling.nextToken();
             BoxJOIN boxJoin = new BoxJOIN();
             String joinTable = handling.nextToken();
 
-            //////////////////CONDITION???
             temp = handling.nextToken();
             if(temp.equals("ON")){
                 temp = handling.nextToken();
                 temp = temp.substring(temp.indexOf(".")+1, temp.length());
-//System.out.println("VOICI CONDITION ON "+temp);
                 boxJoin.addChoiceON(temp);
                 temp = handling.nextToken();
                 temp = handling.nextToken();
             }
             nodes.add(boxJoin.makeNode());
             nodes.add(myTables.get(joinTable));
-            temp = handling.nextToken();
-//System.out.println("JOIN BOX" + boxJoin);
         }
-
-
-        if (temp.equals("WHERE")){
-            ArrayList<String> whereInfo = new ArrayList<>();
-            ///////////////////En 3 parties
-            while (handling.hasMoreTokens()){
-                temp = handling.nextToken();
-                if (!temp.equals("AND")){
-                    whereInfo.add(temp);
-                }
-            }
-            BoxWHERE boxWhere = new BoxWHERE(whereInfo);
-            nodes.add(1,boxWhere.makeNode());
-//System.out.println("105!!!!!!!!!!!!!!!!"+nodes);
-//System.out.println(nodes.get(nodes.size()-1).getClass().getName());
         }
-
+       
+		if(handling.hasMoreTokens()) {
+			temp = handling.nextToken();
+	        if (temp.equals("WHERE")){
+	            ArrayList<String> whereInfo = new ArrayList<>();
+	            while (handling.hasMoreTokens()){
+	                temp = handling.nextToken();
+	                if (!temp.equals("AND")){
+	                    whereInfo.add(temp);
+	                }
+	            }
+	            BoxWHERE boxWhere = new BoxWHERE(whereInfo);
+	            nodes.add(1,boxWhere.makeNode());
+	        }
+		}
         ExecutionTree root = TreeBuilder.buildTree(nodes);
         message = root.getFormulaRA();
         ExecutiveVisitor sucess = new ExecutiveVisitor();
         TableArchetype resultT = root.accept(sucess);
-//System.out.println("WE ARE THE CHAMPI "+resultT);
-//	String[][] testT = resultT.toTable();
-//System.out.println(testT.toString());
         return resultT;
     }
 
     private ItemRow makeItem(String columnsType, String value) {
-//System.out.println(columnsType +"!!!!"+ value);
         switch (columnsType){
             case "BIT": {
                 return new DataBit(value);
@@ -311,7 +276,7 @@ System.out.println(temp);
             case "NUMBER": {
                 return new DataNumber(value);
             }
-            case "Date": {
+            case "DATE": {
                 return new DataDate(value);
             }
             case "FOREIGN_KEY": {
@@ -322,14 +287,8 @@ System.out.println(temp);
     }
 
 
-
-
-
-
-    //This method needs to be improved a lot
     public String convertSyntax (String originalCommand){
         String onlyWords = (originalCommand.toString().replaceFirst(";", "")).replaceAll(",", " ");
-//System.out.println(onlyWords);
         String withoutAS = onlyWords.replaceAll(" AS ","AS").replaceAll("\\("," ").replaceAll("\\)"," ").replaceAll(","," ").replaceAll(";","").replaceAll("\"","");
         ArrayList<String> offAS = new ArrayList<>();
         StringTokenizer checkAS = new StringTokenizer(withoutAS);
@@ -346,117 +305,7 @@ System.out.println(temp);
             String nickName = rep.nextToken();
             String offNickName = tableName + "AS" + nickName;
             withoutAS = (withoutAS.replace(nickName + ".", tableName + ".")).replaceAll(offNickName, tableName);
-//            withoutAS =withoutAS.replaceAll("\\("," ").replaceAll("\\)"," ").replaceAll(","," ").replaceAll(";","").replaceAll("\"","");
-        }
-//System.out.println(withoutAS);
+        	}
         return withoutAS;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    private void startAutomate (StringTokenizer handling){
-        String head = handling.nextToken();
-        switch (head) {
-            case "SELECT": {
-                BoxSELECT box = new BoxSELECT(nodes, handling);
-                break;
-            }
-            case "CREAT": {
-                BoxCREAT box = new BoxCREAT(nodes, handling);
-                break;
-            }
-            case "INSERT": {
-                BoxINSERT box = new BoxINSERT(nodes, handling);
-                break;
-            }
-            case "UPDATE": {
-                BoxUPDATE box = new BoxUPDATE(nodes, handling);
-                break;
-            }
-        }
-    }
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-/*
-    private class BoxSELECT extends AutoBoxArchetype {
-        public BoxSELECT(ArrayList<ExecutionTree> nodes, StringTokenizer remain) {
-            super(nodes, remain);
-        }
-
-        public BoxSELECT(ArrayList<String> selectInfo) {
-            super();
-        }
-
-        @Override
-        public void runAutomate() {
-        }
-
-    }
-
-
-
- !!!!!!!!!!!!!!!!!!!*/
-
-
-    /*
-    StringTokenizer request;
-    public SyntaxHandling(String request) {
-        this.request = new StringTokenizer(request);
-    }
-    */
-
-
-    /*
-    if (now = SELECT)
-        new BoxSELECT,
-        while(now != FROM),
-            BoxSELECT.add(now)
-            then new BoxFROM
-            while(now != WHERE && now != JOIN && now != ;)
-                BoxJOIN.add(now)
-                if (now = JOIN)
-                    new BoxJOIN
-                    ADD while(!= WHERE && != ;)
-                if (now = WHERE)
-                    new BoxWHERE
-                    ADD while(!= ;)
-     */
-
-
-    /**
-     * Use keywords to decider which loop to go in.
-     * LIKE: if CREAT is in the Syntax / if SELECT is in the Syntax
-     *
-     * RULES: Only AND allowed space between the word.
-     *
-     *
-     *
-     *   1SELECT
-     *  2FROM
-     * 3JOIN
-     *
-     * 4WHERE
-     *  5ORDERBY (ORDERBY | ORDER then BY)
-     *
-     *
-     */
-
-
-
-    // Il va peut-etre utiliser/creer les objet de textExecutable
 }

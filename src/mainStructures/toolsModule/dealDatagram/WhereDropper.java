@@ -5,7 +5,12 @@ import java.util.Iterator;
 
 import mainStructures.dataFramework.RowTable;
 import mainStructures.dataFramework.TableArchetype;
-
+/**
+ * Service for Suppression-DELECT
+ * This class only have a static method,
+ * 	which means we don't need to "new" it,
+ * 		which is good things for our program
+ */
 public class WhereDropper {
 	public static TableArchetype goWork(ArrayList<String> pre, TableArchetype tab) {
 		Iterator<String> iterator = pre.iterator();
@@ -60,7 +65,6 @@ System.out.println(pre);
 	            case "=": {
 	            	while (iter.hasNext()) {
 	            		RowTable now = iter.next();
-System.out.println(now.get(who).toString());
 	            		if(now.get(who).getData().equals(when)) {
 	            			System.out.println(now.get(who));
 	            			iter.remove();
@@ -81,6 +85,5 @@ System.out.println(now.get(who).toString());
 	        }
 		}
 		return tab;
-//System.out.println("ARE YOU  WORKING "+key);
 	}
 }
