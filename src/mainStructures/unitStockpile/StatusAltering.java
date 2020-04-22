@@ -6,12 +6,14 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class  StatusAltering {
-    private LinkedList<String> alteration = new LinkedList<>();
+    private final LinkedList<String> alteration = new LinkedList<>();
     private int cursor = 0;
-    private int sizeMax = 5;
+    private final int sizeMax = 5;
     private boolean peek;
+    CyDatabase status;
 
-    public StatusAltering() {
+    public StatusAltering(CyDatabase status) {
+        this.status=status;
         String wesh="abcdefghijklmnopqrstuvwxyz";
         Random random=new Random();
         StringBuilder filename = new StringBuilder();
@@ -27,19 +29,19 @@ System.out.println(alteration);
         peek = false;
     }
 
-    public void markStatus(CyDatabase status) {
+    public void markStatus() {
         if (cursor==sizeMax-1){
             String tem = alteration.pollFirst();
-            saveStatus(status,tem);
+            saveStatus(tem);
             alteration.add(tem);
         }else {
-            saveStatus(status, alteration.get(cursor++));
+            saveStatus(alteration.get(cursor++));
             peek = false;
         }
         System.out.println(alteration);
     }
 
-    public void saveStatus(CyDatabase status, String fileName) {
+    public void saveStatus(String fileName) {
         try {
             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(fileName));
             stream.writeObject(status);

@@ -15,6 +15,10 @@ public class JoinComparator {
 				RowTable rowAdded = tab2.get(Integer.parseInt(row.get(key).getData()) - 1);
 				row.putAll(rowAdded);
 			}
+			String[]after = new String[tab1.getTitle().length+tab2.getTitle().length];
+			System.arraycopy(tab1.getTitle(),0,after,0,tab1.getTitle().length);
+			System.arraycopy(tab2.getTitle(),0,after,tab1.getTitle().length,tab2.getTitle().length);
+			tab1.setTitle(after);
 		}
 		return tab1;
 	}

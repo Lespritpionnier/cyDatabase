@@ -48,7 +48,6 @@ public class SyntaxHandling {
         String temp;
         if (handling.hasMoreTokens()){
             temp = handling.nextToken();
-System.out.println(temp);
             //////////////////////////////////////////////////////////////////////////////////////////////////SELECT
             if(temp.equals("SELECT")){
                 return doSELECT(temp);
@@ -94,7 +93,6 @@ System.out.println(temp);
                 }
             }
         }
-        System.out.println("BUT "+ but);
         return WhereSetter.doWork(myTables.get(but),setInfo,whereInfo);
     }
 

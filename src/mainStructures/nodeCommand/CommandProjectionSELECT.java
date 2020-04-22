@@ -8,11 +8,6 @@ import java.util.HashMap;
 public class CommandProjectionSELECT extends CommandArchetypeNode {
     private ArrayList<String> dataWanted = new ArrayList<>();
     private HashMap<String,String> alias = new HashMap<>();
-    private String[] orderBY = new String[2]; //Name of the column + ASC/DSC
-    private boolean ifDISTINCT = false;
-
- 
-
 
 
     //  I don't remember why I wrote those things:
@@ -33,12 +28,9 @@ public class CommandProjectionSELECT extends CommandArchetypeNode {
      * Those METHODS below are made before, maybe WRONG or MOUCHE
      * DONT FORGET the situation of "SUM, AVG, MIN, MAX, COUNT"
      *                              (Only one syntax to stock)
-     * @param ifDISTINCT
+     *
      */
 
-    public void setDistinct(boolean ifDISTINCT) {
-        this.ifDISTINCT = ifDISTINCT;
-    }
 
 
 

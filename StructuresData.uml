@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="18.083333333333258" y="760.0">mainStructures.nodeCommand.ExecutionTree</node>
+    <node x="1147.6751394251396" y="0.0">mainStructures.dataFramework.TableArchetype</node>
+    <node x="40.652777777777715" y="390.0">mainStructures.dataFramework.TableDatabase</node>
+    <node x="1260.6126394251396" y="183.0">mainStructures.toolsModule.dealDatagram.WhereFilter</node>
+    <node x="904.6527777777777" y="423.0">mainStructures.nodeCommand.CommandJointJOIN</node>
+    <node x="631.6527777777777" y="423.0">mainStructures.nodeCommand.CommandSelectionWHERE</node>
+    <node x="27.583333333333258" y="911.0">mainStructures.toolsModule.treeExcutable.TreeBuilder</node>
+    <node x="1126.6527777777778" y="435.0">mainStructures.toolsModule.dealDatagram.SelectProjector</node>
+    <node x="684.9368323680824" y="183.0">mainStructures.toolsModule.dealDatagram.ZonedData</node>
+    <node x="1004.6451657014156" y="783.0">mainStructures.toolsModule.treeExcutable.ExecutiveVisitor</node>
+    <node x="1434.6126394251396" y="183.0">mainStructures.toolsModule.dealDatagram.JoinComparator</node>
+    <node x="342.6527777777777" y="423.0">mainStructures.nodeCommand.CommandProjectionSELECT</node>
+    <node x="573.4662323037323" y="615.0">mainStructures.toolsModule.treeExcutable.ParsingVisitor</node>
+    <node x="259.5078989703991" y="171.0">mainStructures.nodeCommand.CommandArchetypeNode</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="mainStructures.toolsModule.treeExcutable.ParsingVisitor" target="mainStructures.nodeCommand.CommandSelectionWHERE">
+      <point x="11.4375" y="-27.5" />
+      <point x="676.4037323037323" y="595.0" />
+      <point x="673.8194444444443" y="595.0" />
+      <point x="-84.33333333333337" y="39.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandArchetypeNode" target="mainStructures.nodeCommand.ExecutionTree">
+      <point x="-107.11111111111109" y="39.5" />
+      <point x="272.896787859288" y="330.0" />
+      <point x="0.0" y="330.0" />
+      <point x="0.0" y="740.0" />
+      <point x="32.5" y="740.0" />
+      <point x="-72.08333333333326" y="-50.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandJointJOIN" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="0.0" y="39.5" />
+      <point x="1005.6527777777777" y="595.0" />
+      <point x="745.0287323037323" y="595.0" />
+      <point x="80.0625" y="-27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ParsingVisitor" target="mainStructures.nodeCommand.CommandJointJOIN">
+      <point x="57.1875" y="-27.5" />
+      <point x="722.1537323037323" y="585.0" />
+      <point x="938.3194444444443" y="585.0" />
+      <point x="-67.33333333333331" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.dealDatagram.SelectProjector" target="mainStructures.dataFramework.TableArchetype">
+      <point x="64.0" y="-27.5" />
+      <point x="1286.6527777777778" y="270.0" />
+      <point x="1208.9165728228231" y="270.0" />
+      <point x="1208.9165728228231" y="151.0" />
+      <point x="1239.1751394251396" y="151.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandProjectionSELECT" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="89.66666666666669" y="39.5" />
+      <point x="566.8194444444443" y="555.0" />
+      <point x="653.5287323037323" y="555.0" />
+      <point x="-11.4375" y="-27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ParsingVisitor" target="mainStructures.nodeCommand.CommandProjectionSELECT">
+      <point x="-34.3125" y="-27.5" />
+      <point x="630.6537323037323" y="565.0" />
+      <point x="477.1527777777777" y="565.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="mainStructures.dataFramework.TableDatabase" target="mainStructures.toolsModule.dealDatagram.ZonedData">
+      <point x="105.75" y="-72.5" />
+      <point x="287.4027777777777" y="370.0" />
+      <point x="735.5618323680824" y="370.0" />
+      <point x="-16.875" y="27.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.ExecutionTree" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="72.08333333333331" y="-50.5" />
+      <point x="176.66666666666663" y="740.0" />
+      <point x="619.2162323037323" y="740.0" />
+      <point x="-45.75" y="27.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandJointJOIN" target="mainStructures.nodeCommand.CommandArchetypeNode">
+      <point x="-50.5" y="-39.5" />
+      <point x="955.1527777777777" y="310.0" />
+      <point x="460.3412323037324" y="310.0" />
+      <point x="80.33333333333331" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.nodeCommand.CommandJointJOIN">
+      <point x="0.0" y="-27.5" />
+      <point x="1105.6451657014156" y="690.0" />
+      <point x="1082.8957394894896" y="690.0" />
+      <point x="1082.8957394894896" y="595.0" />
+      <point x="1072.986111111111" y="595.0" />
+      <point x="67.33333333333331" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="-44.888888888888914" y="-27.5" />
+      <point x="1060.7562768125267" y="710.0" />
+      <point x="710.7162323037323" y="710.0" />
+      <point x="45.75" y="27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.dealDatagram.ZonedData" target="mainStructures.dataFramework.TableArchetype">
+      <point x="0.0" y="-27.5" />
+      <point x="752.4368323680824" y="141.0" />
+      <point x="1213.0322822822827" y="141.0" />
+      <point x="-26.14285714285711" y="50.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.TreeBuilder" target="mainStructures.nodeCommand.ExecutionTree">
+      <point x="38.5" y="-27.5" />
+      <point x="143.08333333333326" y="886.0" />
+      <point x="147.83333333333326" y="886.0" />
+      <point x="43.25" y="50.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandSelectionWHERE" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="0.0" y="39.5" />
+      <point x="758.1527777777777" y="575.0" />
+      <point x="699.2787323037323" y="575.0" />
+      <point x="34.3125" y="-27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.nodeCommand.CommandSelectionWHERE">
+      <point x="-22.444444444444457" y="-27.5" />
+      <point x="1083.200721256971" y="700.0" />
+      <point x="836.0930823680824" y="700.0" />
+      <point x="836.0930823680824" y="575.0" />
+      <point x="842.486111111111" y="575.0" />
+      <point x="84.33333333333326" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.dataFramework.TableDatabase">
+      <point x="-89.77777777777783" y="-27.5" />
+      <point x="1015.8673879236378" y="730.0" />
+      <point x="168.9118323680824" y="730.0" />
+      <point x="168.9118323680824" y="595.0" />
+      <point x="181.65277777777771" y="595.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.toolsModule.dealDatagram.WhereFilter">
+      <point x="44.888888888888914" y="-27.5" />
+      <point x="1150.5340545903045" y="720.0" />
+      <point x="1337.6126394251396" y="720.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandProjectionSELECT" target="mainStructures.nodeCommand.CommandArchetypeNode">
+      <point x="-67.25" y="-39.5" />
+      <point x="409.9027777777777" y="350.0" />
+      <point x="353.2301211926213" y="350.0" />
+      <point x="-26.77777777777777" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.dealDatagram.WhereFilter" target="mainStructures.dataFramework.TableArchetype">
+      <point x="0.0" y="-27.5" />
+      <point x="1337.6126394251396" y="151.0" />
+      <point x="1265.317996567997" y="151.0" />
+      <point x="26.14285714285711" y="50.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.dataFramework.TableArchetype">
+      <point x="89.77777777777783" y="-27.5" />
+      <point x="1195.4229434791935" y="740.0" />
+      <point x="1628.1126394251396" y="740.0" />
+      <point x="1628.1126394251396" y="131.0" />
+      <point x="1317.6037108537112" y="131.0" />
+      <point x="78.42857142857156" y="50.5" />
+    </edge>
+    <edge source="mainStructures.dataFramework.TableDatabase" target="mainStructures.dataFramework.TableArchetype">
+      <point x="-105.75" y="-72.5" />
+      <point x="75.90277777777771" y="320.0" />
+      <point x="59.12433236808238" y="320.0" />
+      <point x="59.12433236808238" y="121.0" />
+      <point x="1160.7465679965685" y="121.0" />
+      <point x="-78.42857142857133" y="50.5" />
+    </edge>
+    <edge source="mainStructures.dataFramework.TableDatabase" target="mainStructures.nodeCommand.ExecutionTree">
+      <point x="-112.79999999999995" y="72.5" />
+      <point x="68.85277777777776" y="595.0" />
+      <point x="100.22907282282301" y="595.0" />
+      <point x="100.22907282282301" y="740.0" />
+      <point x="118.99999999999989" y="740.0" />
+      <point x="14.416666666666629" y="-50.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.nodeCommand.CommandProjectionSELECT">
+      <point x="-67.33333333333326" y="-27.5" />
+      <point x="1038.3118323680824" y="720.0" />
+      <point x="464.5305823680824" y="720.0" />
+      <point x="464.5305823680824" y="595.0" />
+      <point x="387.48611111111103" y="595.0" />
+      <point x="-89.66666666666669" y="39.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.dealDatagram.SelectProjector" target="mainStructures.toolsModule.dealDatagram.ZonedData">
+      <point x="0.0" y="-27.5" />
+      <point x="1222.6527777777778" y="280.0" />
+      <point x="803.0618323680824" y="280.0" />
+      <point x="50.625" y="27.5" />
+    </edge>
+    <edge source="mainStructures.dataFramework.TableDatabase" target="mainStructures.toolsModule.treeExcutable.ParsingVisitor">
+      <point x="112.79999999999995" y="72.5" />
+      <point x="294.45277777777767" y="575.0" />
+      <point x="607.7787323037323" y="575.0" />
+      <point x="-57.1875" y="-27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ParsingVisitor" target="mainStructures.dataFramework.TableDatabase">
+      <point x="-80.0625" y="-27.5" />
+      <point x="584.9037323037323" y="585.0" />
+      <point x="238.0527777777777" y="585.0" />
+      <point x="56.39999999999998" y="72.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.toolsModule.dealDatagram.JoinComparator">
+      <point x="67.33333333333326" y="-27.5" />
+      <point x="1172.978499034749" y="730.0" />
+      <point x="1526.1126394251396" y="730.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.dealDatagram.JoinComparator" target="mainStructures.dataFramework.TableArchetype">
+      <point x="0.0" y="-27.5" />
+      <point x="1526.1126394251396" y="141.0" />
+      <point x="1291.4608537108538" y="141.0" />
+      <point x="52.28571428571422" y="50.5" />
+    </edge>
+    <edge source="mainStructures.toolsModule.treeExcutable.ExecutiveVisitor" target="mainStructures.toolsModule.dealDatagram.SelectProjector">
+      <point x="22.444444444444343" y="-27.5" />
+      <point x="1128.08961014586" y="710.0" />
+      <point x="1222.6527777777778" y="710.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="mainStructures.nodeCommand.CommandSelectionWHERE" target="mainStructures.nodeCommand.CommandArchetypeNode">
+      <point x="-63.25" y="-39.5" />
+      <point x="694.9027777777777" y="330.0" />
+      <point x="406.78567674817685" y="330.0" />
+      <point x="26.77777777777777" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="814.5" y="483.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
