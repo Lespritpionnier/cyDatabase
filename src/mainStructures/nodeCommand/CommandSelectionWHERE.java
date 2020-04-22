@@ -3,7 +3,10 @@ package mainStructures.nodeCommand;
 import mainStructures.toolsModule.treeExcutable.ParsingVisitor;
 
 import java.util.ArrayList;
-
+/**
+ * A node of execution tree, WHERE
+ *	who is a part of the visitor pattern 
+ */
 public class CommandSelectionWHERE extends CommandArchetypeNode {
     private ArrayList<String> preConditions =new ArrayList<>();
 
@@ -11,20 +14,6 @@ public class CommandSelectionWHERE extends CommandArchetypeNode {
         super();
         preConditions = predicateConditions;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    public String toString() {
-//        return "\n VOICI WHERE!{Conditions:" + justForPre + '}' + "\n";
-//    }
     
     public ArrayList<String> getPreConditions() {
 		return preConditions;

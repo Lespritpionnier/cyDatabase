@@ -5,8 +5,13 @@ import mainStructures.toolsModule.treeExcutable.ParsingVisitor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A node of execution tree, SELECT
+ *	who is a part of the visitor pattern 
+ */
 public class CommandProjectionSELECT extends CommandArchetypeNode {
     private ArrayList<String> dataWanted = new ArrayList<>();
+<<<<<<< HEAD
     private HashMap<String,String> alias = new HashMap<>();
 
 
@@ -14,15 +19,19 @@ public class CommandProjectionSELECT extends CommandArchetypeNode {
 
 
 	public ArrayList<String> getDataWanted() {
+=======
+    
+    public ArrayList<String> getDataWanted() {
+>>>>>>> f4cbf9279def84ad347918ec20ebb9f93345b92f
 		return dataWanted;
 	}
-
 
 	public CommandProjectionSELECT(ArrayList<String> dataWanted) {
         super();
         this.dataWanted = dataWanted;
     }
 
+<<<<<<< HEAD
 
 	/**
      * Those METHODS below are made before, maybe WRONG or MOUCHE
@@ -66,6 +75,8 @@ public class CommandProjectionSELECT extends CommandArchetypeNode {
     }
 */
 
+=======
+>>>>>>> f4cbf9279def84ad347918ec20ebb9f93345b92f
     @Override
     public String getFormulaRA() {
         return "Proj("+right.getFormulaRA()+")";

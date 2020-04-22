@@ -4,7 +4,9 @@ import mainStructures.nodeCommand.CommandSelectionWHERE;
 import mainStructures.nodeCommand.ExecutionTree;
 
 import java.util.ArrayList;
-
+/**
+ * It arrange the information for CommandSelectionWHERE
+ */
 public class BoxWHERE {
     ArrayList<String> conditions = new ArrayList<>();
 

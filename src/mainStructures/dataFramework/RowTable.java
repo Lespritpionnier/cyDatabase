@@ -1,14 +1,17 @@
 package mainStructures.dataFramework;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+
+/**
+ * This is the Row of the Tables of this SGBD!
+ * 	It extends directly LinkedHashMap<String, ItemRow>
+ * 	which is a HashMap who can memory the rank of the elements be putting in
+ */
 
 public class RowTable extends LinkedHashMap<String, ItemRow>{
-    /**
-     * The keys of this HashMap are the names of the columns in the table
-     */
+
+	private static final long serialVersionUID = 1L;
+
     	
     	@Override
         public ItemRow put(String key, ItemRow value) {
@@ -19,9 +22,25 @@ public class RowTable extends LinkedHashMap<String, ItemRow>{
 			return null;
         }
     
-    	
     }
     	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    	@Override
 //        public ItemRow put(String key, ItemRow value) {
 //            return putVal(hash(key), key, value, true, true);
@@ -49,21 +68,4 @@ public class RowTable extends LinkedHashMap<String, ItemRow>{
 //        }
 //    }
 
-
-
-
-
-
-
-
-
-
-
-/*
-    public String[] getColumnsName(){
-        String[] columnsName = new String[super.size()];
-        return columnsName;
-    }
-
- */
 

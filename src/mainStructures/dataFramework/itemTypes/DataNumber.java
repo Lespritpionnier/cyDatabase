@@ -1,9 +1,14 @@
 package mainStructures.dataFramework.itemTypes;
 
 import mainStructures.dataFramework.ItemRow;
+/**
+ * This is the type Number
+ */
 
 public class DataNumber implements ItemRow {
-    private Double data;
+
+	private static final long serialVersionUID = 1L;
+	private Double data;
 
     public DataNumber(String value) {
         data = Double.parseDouble(value);

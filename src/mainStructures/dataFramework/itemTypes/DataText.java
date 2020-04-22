@@ -2,8 +2,14 @@ package mainStructures.dataFramework.itemTypes;
 
 import mainStructures.dataFramework.ItemRow;
 
+/**
+ * This is the type TEXT
+ */
+
 public class DataText implements ItemRow {
-    private String data;
+
+	private static final long serialVersionUID = 1L;
+	private String data;
 
     public DataText(String data) {
         this.data = data;

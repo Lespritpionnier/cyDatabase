@@ -6,7 +6,12 @@ import mainStructures.dataFramework.TableDatabase;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/**
+ * Service for Motification-UPDATE
+ * This class only have a static method,
+ * 	which means we don't need to "new" it,
+ * 		which is good things for our program
+ */
 public class WhereSetter {
     public static TableArchetype doWork (TableDatabase tab, ArrayList<String>set, ArrayList<String> where){
         String who = set.get(0);

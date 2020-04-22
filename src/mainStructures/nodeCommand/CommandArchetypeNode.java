@@ -1,5 +1,8 @@
 package mainStructures.nodeCommand;
-
+/**
+ * This is the archetype of Node Command
+ * 	It implements ExecutionTree to free the children classes
+ */
 public abstract class CommandArchetypeNode implements ExecutionTree{
     protected ExecutionTree left;
     protected ExecutionTree right;

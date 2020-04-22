@@ -27,12 +27,12 @@ import javax.swing.ScrollPaneConstants;
  */
 
 public class UserInterface extends JFrame {
-	int rank = 1;
+
 	protected JLabel mess = new JLabel("Here is for important message :)");
 	protected JTextField checkField = new JTextField(30);
 
 	private JTable tableau;
-	private JButton btnValid = new JButton("VALID");
+	private JButton btnValid = new JButton("V\r\nA\r\nL\r\nI\r\nD");
 	private JButton btnSave = new JButton("Save");
 	private JButton btnImport = new JButton("Import");
 	private  JButton btnUndo = new JButton("Undo");
@@ -45,7 +45,7 @@ public class UserInterface extends JFrame {
 	private final JButton btnHarryP = new JButton("Harry P.");
 	protected CyDatabase myDB = new CyDatabase();
 
-	public UserInterface(){
+	public UserInterface() {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("CyDatabase");
@@ -102,7 +102,7 @@ public class UserInterface extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String requis = textArea.getText();
-				SyntaxHandling synSQL = new SyntaxHandling(myDB.getMyTables(),requis);
+				SyntaxHandling synSQL = new SyntaxHandling(myDB.getMyTables(), requis);
 				TableArchetype pre = synSQL.makeNodes();
 				String[][] data = pre.toJTable();
 				String[] title = pre.getTitle();
@@ -136,8 +136,6 @@ public class UserInterface extends JFrame {
 			}
 		}
 		btnPath.addActionListener(new OutCheckAction());
-
-
 
 
 		class SaveAction implements ActionListener {
@@ -177,27 +175,27 @@ public class UserInterface extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TableArchetype hp = null;
-				if(rank==1){
-					hp=HarryPotter.magic1(myDB);
+				if (rank == 1) {
+					hp = HarryPotter.magic1(myDB);
 					i++;
-				}else if(rank==2){
-					for(int i=0; i<100000; i++) {
+				} else if (rank == 2) {
+					for (int i = 0; i < 100000; i++) {
 						hp = HarryPotter.magic2(myDB);
 					}
 					i++;
-				}else if(rank==3){
-					hp=HarryPotter.magic3(myDB);
+				} else if (rank == 3) {
+					hp = HarryPotter.magic3(myDB);
 					i++;
-				}else if(rank==4){
-					for(int i=0; i<100000; i++) {
+				} else if (rank == 4) {
+					for (int i = 0; i < 100000; i++) {
 						hp = HarryPotter.magic4(myDB);
 					}
 					i++;
-				}else if(rank==5){
-					hp=HarryPotter.magic5(myDB);
+				} else if (rank == 5) {
+					hp = HarryPotter.magic5(myDB);
 					i++;
-				}else if(rank==6){
-					for(int i=0; i<100000; i++) {
+				} else if (rank == 6) {
+					for (int i = 0; i < 100000; i++) {
 						hp = HarryPotter.magic6(myDB);
 					}
 					i++;
@@ -214,15 +212,12 @@ public class UserInterface extends JFrame {
 			}
 		}
 		btnHarryP.addActionListener(new HarryAction());
-
-
-
 	}
 
-	public static void main(String[] args) {
-		new UserInterface();
+		public static void main(String[] args) {
+			new UserInterface();
+		}
 	}
-}
 
 
 

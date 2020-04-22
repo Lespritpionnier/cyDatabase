@@ -8,23 +8,22 @@ import mainStructures.toolsModule.treeExcutable.ParsingVisitor;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * This is the class of Table of this SGBD!
+ * It is in fact an ArrayList of RowTable
+ * 	and it also can be a part of execution tree
+ */
 
 public class TableDatabase extends TableArchetype implements ExecutionTree {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private LinkedHashMap<String,String> infoDatatype;
-    private HashMap<String,String> foreignKeys;
-    private int nextKey; //MAYBE RELATE TO SIZE()
-    //private ArrayList<Integer> indexRanked = new ArrayList<>()
+    private int nextKey; 
 
 
     public TableDatabase(String tableName, LinkedHashMap<String,String> infoDatatype) {
        this.tableName=tableName;
        this.infoDatatype = infoDatatype;
-       nextKey=1; //MAYBE RELATE TO SIZE()
-		//if(infoDatatype!=null) {
+       nextKey=1; 
        try{	for(String key: infoDatatype.keySet()){
 	           if(infoDatatype.get(key).equals("PRIMARY_KEY")){ primaryKey=key; }
 	       }
@@ -32,12 +31,8 @@ public class TableDatabase extends TableArchetype implements ExecutionTree {
 			System.err.println("Table:\""+ tableName +"\" is " + e.getMessage());
 		}
     }
+    public TableDatabase() {}
 
-    //Think about REMOVE()
-
-    public TableDatabase() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public ZonedData toVirtual () {
     	ZonedData virtual = new ZonedData(title,tableName);
@@ -65,7 +60,6 @@ public class TableDatabase extends TableArchetype implements ExecutionTree {
 
 
     public void setForeignKeys(HashMap<String, String> foreignKeys) {
-        this.foreignKeys = foreignKeys;
     }
 
 
@@ -91,7 +85,7 @@ public class TableDatabase extends TableArchetype implements ExecutionTree {
 
     @Override
     public String getFormulaRA() {
-        return null;
+        return tableName;
     }
 
     @Override
