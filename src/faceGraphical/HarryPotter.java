@@ -11,6 +11,7 @@ import java.util.Random;
  * 	which including some static method
  */
 public class HarryPotter {
+	static int sizeMax = 7;
     public static TableArchetype magic1(CyDatabase myDB) {
         return new SyntaxHandling(myDB.getMyTables(),"CREATE TABLE tab1(" +
                 "id_first AUTOINCREMENT, " +
@@ -33,7 +34,7 @@ public class HarryPotter {
             }
         }
         String pass = "INSERT INTO tab1 (id_second, number1, text1)" +
-                "VALUES ( " + Integer.toString(random.nextInt(50)) +", " + Integer.toString(number) + ", "+mess.toString()+") ;";
+                "VALUES ( " + Integer.toString(number) + ", "+ Integer.toString(random.nextInt(1000)) +", "+mess.toString()+") ;";
        return new SyntaxHandling(myDB.getMyTables(),pass).makeNodes();
     }
 
@@ -58,8 +59,8 @@ public class HarryPotter {
                 mess.append(wesh.charAt(number));
             }
         }
-        String pass = "INSERT INTO tab1 (id_third, number2, text2) " +
-                "VALUES ( " + Integer.toString(random.nextInt(50)) +", " + Integer.toString(number) + ", "+mess.toString()+") ;";
+        String pass = "INSERT INTO tab2 (id_third, number2, text2) " +
+                "VALUES ( " + Integer.toString(number) + ", "+ Integer.toString(random.nextInt(1000)) +", "+mess.toString()+") ;";
         return new SyntaxHandling(myDB.getMyTables(),pass).makeNodes();
     }
 
@@ -82,7 +83,7 @@ public class HarryPotter {
                 mess.append(wesh.charAt(number));
             }
         }
-        String pass = "INSERT INTO tab1 (number3, text3)" +
+        String pass = "INSERT INTO tab3 (number3, text3)" +
                 "VALUES ( " + Integer.toString(number) + ", "+mess.toString()+") ;";
         return new SyntaxHandling(myDB.getMyTables(),pass).makeNodes();
     }

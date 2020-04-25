@@ -18,7 +18,7 @@ public class WhereDropper {
 			String who = iterator.next();
 				int knife = who.indexOf(".")+1;
 				who = who.substring(knife, who.length());
-System.out.println(pre);
+//System.out.println(pre);
 			String how = iterator.next();
 			String when = iterator.next();
 			Iterator<RowTable> iter = tab.iterator();

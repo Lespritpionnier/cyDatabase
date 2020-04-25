@@ -19,8 +19,8 @@ public class WhereSetter {
         who = who.substring(knife, who.length());
         String what = set.get(2);
         
-     System.out.println("WHO "+ who);
-     System.out.println("TAB "+ tab);
+     //System.out.println("WHO "+ who);
+    // System.out.println("TAB "+ tab);
      
         String when = where.get(0);
         knife = when.indexOf(".")+1;

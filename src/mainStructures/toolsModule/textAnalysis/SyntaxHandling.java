@@ -49,11 +49,7 @@ public class SyntaxHandling {
         String temp;
         if (handling.hasMoreTokens()){
             temp = handling.nextToken();
-<<<<<<< HEAD
-            //////////////////////////////////////////////////////////////////////////////////////////////////SELECT
-=======
-            
->>>>>>> f4cbf9279def84ad347918ec20ebb9f93345b92f
+
             if(temp.equals("SELECT")){
                 return doSELECT(temp);
             }

@@ -28,11 +28,11 @@ import javax.swing.ScrollPaneConstants;
 
 public class UserInterface extends JFrame {
 
-	protected JLabel mess = new JLabel("Here is for important message :)");
+	protected JLabel mess = new JLabel("GOOD LUCK MY FRIENDS :)");
 	protected JTextField checkField = new JTextField(30);
 
 	private JTable tableau;
-	private JButton btnValid = new JButton("V\r\nA\r\nL\r\nI\r\nD");
+	private JButton btnValid = new JButton("VALID");
 	private JButton btnSave = new JButton("Save");
 	private JButton btnImport = new JButton("Import");
 	private  JButton btnUndo = new JButton("Undo");
@@ -43,6 +43,7 @@ public class UserInterface extends JFrame {
 	JTextArea textArea = new JTextArea();
 	private   JScrollPane scrollPane_1 = new JScrollPane(textArea);
 	private final JButton btnHarryP = new JButton("Harry P.");
+	int rank =1;
 	protected CyDatabase myDB = new CyDatabase();
 
 	public UserInterface() {
@@ -175,30 +176,31 @@ public class UserInterface extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TableArchetype hp = null;
+				
 				if (rank == 1) {
 					hp = HarryPotter.magic1(myDB);
-					i++;
+					rank++;
 				} else if (rank == 2) {
-					for (int i = 0; i < 100000; i++) {
+					for (int i = 0; i < 10000; i++) {
 						hp = HarryPotter.magic2(myDB);
 					}
-					i++;
+					rank++;
 				} else if (rank == 3) {
 					hp = HarryPotter.magic3(myDB);
-					i++;
+					rank++;
 				} else if (rank == 4) {
-					for (int i = 0; i < 100000; i++) {
+					for (int i = 0; i < 10000; i++) {
 						hp = HarryPotter.magic4(myDB);
 					}
-					i++;
+					rank++;
 				} else if (rank == 5) {
 					hp = HarryPotter.magic5(myDB);
-					i++;
+					rank++;
 				} else if (rank == 6) {
-					for (int i = 0; i < 100000; i++) {
+					for (int i = 0; i < 10000; i++) {
 						hp = HarryPotter.magic6(myDB);
 					}
-					i++;
+					rank++;
 				}
 
 				assert hp != null;
@@ -208,7 +210,6 @@ public class UserInterface extends JFrame {
 				tableau.setModel(model);
 				textArea.setText("");
 				stock.markStatus();
-				mess.setText(hp.getMessage());
 			}
 		}
 		btnHarryP.addActionListener(new HarryAction());
